@@ -3,10 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Sanay Tralshawala's Portfolio</title>
-
-  <!-- Basic, readable document design -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <style>
     body {
       font-family: Arial, Helvetica, sans-serif;
@@ -22,12 +19,43 @@
       padding: 1.5rem;
     }
 
+    header h1 {
+      margin: 0 0 0.25rem 0;
+      font-size: 2rem;
+    }
+
+    .education-info {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      line-height: 1.4;
+    }
+
+    .education-info div {
+      margin-bottom: 0.5rem;
+    }
+
+    .degree {
+      font-weight: bold;
+    }
+
+    .school {
+      font-size: 0.85rem;
+      color: #e0e0e0;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
     nav ul {
       list-style: none;
       display: flex;
       gap: 1.5rem;
       padding: 0;
-      margin: 0.5rem 0 0 0;
+      margin: 0;
     }
 
     nav a {
@@ -58,10 +86,18 @@
       padding-bottom: 0.5rem;
     }
 
-    .under-construction {
+    h3 {
+      color: #1f2933;
+      margin-top: 1.5rem;
+    }
+
+    .placeholder {
+      background-color: #f5f5f5;
+      border: 2px dashed #ccc;
+      padding: 1rem;
+      margin: 1rem 0;
       font-style: italic;
-      color: #a00;
-      margin-top: 1rem;
+      color: #666;
     }
 
     footer {
@@ -71,152 +107,108 @@
       font-size: 0.9rem;
     }
 
-    .project {
-      margin-bottom: 1.5rem;
-    }
     .icon-links {
       display: flex;
       gap: 16px;
-      color: #ffffff;
+      align-self: flex-start;
     }
 
     .icon {
       width: 20px;
       height: 20px;
     }
+
+    ul {
+      margin: 1rem 0;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    a {
+      color: #0066cc;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .under-construction {
+      font-style: italic;
+      color: #a00;
+      margin: 1.5rem 0;
+      padding: 1rem;
+      background-color: #fee;
+      border-radius: 4px;
+    }
   </style>
 </head>
 
 <body>
-
   <!-- Header and Navigation -->
   <header>
     <div class="header-top">
-    <div>
-    <h1>Sanay Tralshawala</h1>
-    <p>M.S. Artificial Intelligence Engineering - Mechanical Engineering</p>
+      <div>
+        <h1>Sanay Tralshawala</h1>
+        <div class="education-info">
+          <div>
+            <div class="degree">M.S. Artificial Intelligence Engineering - Mechanical Engineering</div>
+            <div class="school">Carnegie Mellon University - December 2026</div>
+          </div>
+          <!--
+          <div>
+            <div class="degree">B.S. Mechanical Engineering</div>
+            <div class="school">Rensselaer Polytechnic Institute - May 2025</div>
+          </div>
+        -->
+        </div>
+      </div>
+      <div class="icon-links">
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">
+          <img class="icon" src="linkedin.svg" alt="LinkedIn">
+        </a>
+        <a href="mailto:sanaytralshawala@gmail.com">
+          <img class="icon" src="mail.svg" alt="Email">
+        </a>
+      </div>
     </div>
-
-    <div class="icon-links">
-      <a href="https://www.linkedin.com/in/sanayt/" target="_blank">
-        <img class="icon" src="linkedin.svg" alt="LinkedIn">
-      </a>
-      <a href="mailto:sanaytralshawala@email.com">
-        <img class="icon" src="mail.svg" alt="Email">
-      </a>
-    </div>
-
-  </div>
-    
 
     <nav>
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href=#about">About Me</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#resume">Resume</a></li>
-        
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="resume.html">Resume</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
     <!-- Home Section -->
-    <section id="home">
+    <section>
       <h2>Home</h2>
-      <p>
-        Hello! Welcome to my personal page. This site is currently under construction but stay tuned for more information!
-      </p>
-
-    </section>
-
-    <!-- About Me Section -->
-    <section id="about">
-      <h2>About Me</h2>
-      <!--
-      <p>
-        This section will introduce the engineer, describe interests, background,
-        and overall professional goals. It will communicate the social value of the
-        engineer’s work and establish credibility.
-      </p>
-      -->
-
-      <p class="under-construction">
-        🚧 Under Construction: Content will be added later.
-      </p>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-      <h2>Projects</h2>
-
-      <p class="under-construction">
-        🚧 Under Construction: Content will be added later.
-      </p>
-      <!--
-      <div class="project">
-        
-        <h3>Project 1 Title</h3>
-        
-        <p>
-          Placeholder description using an IMRD / IDEC-style structure. This will
-          explain the problem, approach, tools used, results, and individual
-          contributions.
-        </p>
-        
-        <p class="under-construction">🚧 Under Construction</p>
+      
+      <div class="placeholder">
+        [YOUR BRIEF INTRODUCTION HERE - A welcoming message about yourself and your expertise]
       </div>
 
-      <div class="project">
-        <h3>Project 2 Title</h3>
-        <p>
-          Placeholder description emphasizing skills, teamwork, and engineering
-          decision-making.
-        </p>
-        <p class="under-construction">🚧 Under Construction</p>
-      </div>
+      <h3>Featured Sections</h3>
+      <ul>
+        <li><a href="about.html">About Me</a> - Learn more about my background and interests</li>
+        <li><a href="experiences.html">Experiences</a> - View my recent work and accomplishments</li>
+        <li><a href="resume.html">Resume</a> - Download my professional resume</li>
+      </ul>
 
-      <div class="project">
-        <h3>Project 3 Title</h3>
-        <p>
-          Placeholder description focusing on design constraints, iteration,
-          and outcomes.
-        </p>
-        <p class="under-construction">🚧 Under Construction</p>
+      <div class="under-construction">
+        🚧 Site Under Construction - More detailed project case studies and documentation coming soon!
       </div>
-
-      <div class="project">
-        <h3>Project 4 Title</h3>
-        <p>
-          Placeholder description highlighting technical tools, methods,
-          and impact.
-        </p>
-        <p class="under-construction">🚧 Under Construction</p>
-      </div>
-    -->
     </section>
-
-    <!-- Resume Section -->
-    <section id="resume">
-      <h2>Resume</h2>
-      <!--
-      <p>
-        A professional one-page resume will be embedded here or linked as a PDF.
-      </p>
-    -->
-
-      <p class="under-construction">
-        🚧 Site Under Construction. Feel free to check out my <a href="https://www.linkedin.com/in/sanayt/" target+"_blank">LinkedIn</a>.
-      </p>
-    </section>
-
-    
   </main>
 
   <footer>
-    <!--© Placeholder Name — Engineering Portfolio-->
     Sanay Tralshawala
   </footer>
-
 </body>
 </html>
