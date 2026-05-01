@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Power Demand Prediction – Sanay Tralshawala</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <div class="header-top">
+      <div>
+        <h1>Sanay Tralshawala</h1>
+        <div class="education-info">
+          <div>
+            <span class="degree">M.S. Artificial Intelligence Engineering</span>
+            <span class="school"> · Carnegie Mellon University</span>
+          </div>
+        </div>
+      </div>
+      <div class="icon-links">
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank" aria-label="LinkedIn">
+          <img class="icon" src="linkedin.svg" alt="LinkedIn">
+        </a>
+        <a href="mailto:sanaytralshawala@gmail.com" aria-label="Email">
+          <img class="icon" src="mail.svg" alt="Email">
+        </a>
+      </div>
+    </div>
+    <nav>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('nav ul').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <a href="projects.html" class="back-link">← Back to Projects</a>
+
+      <div class="experience-header">
+        <h2>Power Demand Prediction Based on Weather Data</h2>
+        <div class="experience-meta">Jan – May 2025 · Carnegie Mellon University · Machine Learning Engineering</div>
+      </div>
+
+      <!-- PLACEHOLDER: RNN regression plot or feature correlation chart -->
+      <img src="[PLACEHOLDER: rnn-regression.png]" alt="RNN predicted vs actual power load" class="experience-image">
+
+      <h3>Overview</h3>
+      <p>
+        Accurate power demand forecasting is critical for grid stability — particularly as renewable energy sources with variable output come online. Grid operators need to know how much reserve capacity to hold, when to import power from neighboring regions, and how to plan generation schedules around weather extremes.
+      </p>
+      <p>
+        This project builds a suite of machine learning models to predict hourly electricity load in the <strong>New York Capital Region (NYISO Zone F)</strong> from four weather features: temperature, relative humidity, surface pressure, and wind speed. Nine years of hourly data (82,104 records) were sourced from NASA POWER and NYISO historical archives.
+      </p>
+      <p>
+        Code: <a href="https://github.com/sanay-tralshawala/MANE-4962-MLE/tree/main/Load_Prediction_Project" target="_blank">github.com/sanay-tralshawala/MANE-4962-MLE</a>
+      </p>
+
+      <h3>Data & Feature Engineering</h3>
+      <p>
+        Temperature proved to be the dominant predictor — visually, the load-vs-temperature scatter shows a U-shaped curve, with peaks at both summer highs (air conditioning demand) and winter lows (lighting, heating), and a trough in the mild 0–20°C range. Wind speed showed an inverse relationship with load; relative humidity and surface pressure contributed more subtly.
+      </p>
+      <p>
+        Seasonal tags (Winter, Spring, Summer, Fall) were applied by month for interpretability. K-means clustering (k=4, selected by silhouette score and elbow analysis) was also used to group data by intrinsic weather similarity rather than calendar date, producing clusters that roughly — but not precisely — align with seasons.
+      </p>
+
+      <!-- PLACEHOLDER: feature scatter plots or pairplot by season -->
+      <img src="[PLACEHOLDER: feature-scatterplots.png]" alt="Load vs weather feature scatter plots" class="experience-image">
+
+      <h3>Models</h3>
+      <p>
+        Three model families were evaluated, each tested with all-four-features and with seasonal and K-means cluster subsets.
+      </p>
+      <p>
+        <strong>Linear Regression</strong> served as the initial benchmark. The full-dataset model achieved R² = 0.17 — essentially flat relative to the data's variance. Seasonal models improved somewhat (Summer: R² = 0.64) but were unreliable in colder months where heating switches to gas, breaking the electricity-weather relationship. The fundamental problem is that power demand is nonlinear in weather.
+      </p>
+      <p>
+        <strong>Random Forest</strong> captured that nonlinearity much better. The best hyperparameter-tuned model (800 estimators, sqrt max features) reached R² = 0.65 on the full dataset. K-means clustered sub-models reached R² up to 0.74 on individual clusters, with visually tighter regression plots. Feature importance ranked temperature at 62%, with relative humidity (15%), wind speed (12%), and pressure (11%) following. Despite improvement, Random Forest still missed the cyclic temporal structure in the data.
+      </p>
+      <p>
+        <strong>LSTM RNN</strong> was the strongest approach. Using a 24-hour sliding window — the past 24 hours of weather predicts the load at hour 24 — the model exploits daily and seasonal periodicity directly. After hyperparameter tuning (3 layers of 50 LSTM units, 15 epochs), the model achieved <strong>R² = 0.87</strong> and MSE = 1,436,504 MW², with a notably tighter prediction band than the forest models. The main remaining issue is a downward bias in predictions, suggesting the loss function could be modified to penalize under-prediction more heavily.
+      </p>
+
+      <!-- PLACEHOLDER: Random Forest vs RNN regression comparison -->
+      <img src="[PLACEHOLDER: model-comparison.png]" alt="Random Forest and RNN regression results compared" class="experience-image">
+
+      <h3>Results Summary</h3>
+      <p>
+        Linear Regression: R² ≈ 0.17 (full dataset) · Random Forest: R² ≈ 0.65 (full) / 0.74 (best cluster) · LSTM RNN: R² = 0.87. The LSTM's advantage comes from capturing the time-series structure that cross-sectional models ignore. The clustering approach consistently improved Random Forest results, validating that grouping weather conditions into similar regimes produces more locally accurate models.
+      </p>
+
+      <h3>Key Takeaways</h3>
+      <p>
+        Temperature dominates electricity demand prediction, but the relationship is nonlinear and seasonal — linear models can't capture it adequately. Time-series structure (daily cycles, seasonal patterns) is the most exploitable signal in this dataset, and the LSTM's 24-hour context window directly leverages it. A key gap is winter performance: gas heating breaks the electricity-weather link in cold months, and including gas usage data alongside weather would likely close that gap significantly. The model also uses a single weather point source (Albany Airport); aggregating across the region would improve accuracy.
+      </p>
+
+      <h3>Skills & Tools</h3>
+      <p>
+        Python · TensorFlow / Keras · LSTM · RNN · Random Forest · Linear Regression · K-Means Clustering · GridSearchCV · Feature Engineering · Time Series Analysis · MinMaxScaler · NASA POWER · NYISO · Scikit-learn · Pandas · Matplotlib
+      </p>
+
+      <a href="projects.html" class="back-link">← Back to Projects</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="mailto:sanaytralshawala@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">LinkedIn</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Sanay Tralshawala</div>
+    </div>
+  </footer>
+</body>
+</html>
