@@ -49,59 +49,57 @@
   <main>
     <section>
       <h2>Projects</h2>
-      <div class="card-grid"></div>
 
-      <div class="exp-card accent-green clickable" onclick="window.location='project-segmentation.html'">
-          <div class="accent-bar"></div>
-          <div class="card-body">
-            <div class="card-header">
-              <h3>Semantic Segmentation of Satellite Imagery</h3>
-              <!-- <span class="card-meta">Jan – May 2023</span> -->
-            </div>
-            <div class="card-org">Deep Learning</div>
-            <p class="card-description">
-              <strong>Elucidated multiphase flow behavior through experimental investigation:</strong> Conducted experiments on complex fluid flow and heat transfer in thermodynamic systems. Analyzed pressure variations caused by mass flow rates, refined automated experimental procedures, and improved understanding of multiphase flow dynamics.
-            </p>
-          </div>
-        </div>
-      </div>
+      <div class="card-grid">
 
-      <div class="exp-card accent-red clickable" onclick="window.location='project-agenticplanning.html'">
-          <div class="accent-bar"></div>
-          <div class="card-body">
-            <div class="card-header">
-              <h3>Agentic Route Planning Agent</h3>
-              <!-- <span class="card-meta">Jan – May 2023</span> -->
-            </div>
-            <div class="card-org">Deep Learning</div>
-            <p class="card-description">
-              <strong>Elucidated multiphase flow behavior through experimental investigation:</strong> Conducted experiments on complex fluid flow and heat transfer in thermodynamic systems. Analyzed pressure variations caused by mass flow rates, refined automated experimental procedures, and improved understanding of multiphase flow dynamics.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      
         <div class="exp-card accent-teal clickable" onclick="window.location='project-heatwave.html'">
           <div class="accent-bar"></div>
           <div class="card-body">
             <div class="card-header">
               <h3>Visualization and 3D Modeling of Microwave Food</h3>
-              <!-- <span class="card-meta">Oct – Dec 2025</span> -->
+              <!--<span class="card-meta">Oct – Dec 2025</span>-->
             </div>
             <div class="card-org">Computer Vision Engineering</div>
             <p class="card-description">
-              <strong>Generated 3D thermal models to optimize cooking:</strong> Combined thermal imaging, color detection, and depth data using frame subtraction techniques to create temperature-annotated 3D models of rotating food. Generated actionable cooking suggestions by analyzing real-time thermal patterns.
+              <strong>Generated 3D thermal models to optimize cooking:</strong> Combined thermal imaging, color detection, and depth data using frame subtraction and ICP fusion to create temperature-annotated 3D models of rotating food. Explored NeRF and stereo depth approaches for mesh generation.
             </p>
           </div>
         </div>
 
-        <div class="exp-card accent-purple clickable" onclick="window.location='project-powerdemand.html'">
+        <div class="exp-card accent-teal clickable" onclick="window.location='project-segmentation.html'">
+          <div class="accent-bar"></div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Semantic Segmentation of Satellite Imagery</h3>
+              <!--<span class="card-meta">Jan – May 2025</span>-->
+            </div>
+            <div class="card-org">Deep Learning</div>
+            <p class="card-description">
+              <strong>Compared architectures for aerial land-cover mapping:</strong> Benchmarked ResNet34 U-Net, ConvNeXt-Tiny, and DINOv3 ConvNeXt-Tiny on the FLAIR-1 dataset. Conducted channel ablation with NIR and elevation inputs and applied conformal prediction for uncertainty quantification.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-card accent-teal clickable" onclick="window.location='project-bus-routing.html'">
+          <div class="accent-bar"></div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Agentic Bus Routing from Disruption Data</h3>
+              <!--<span class="card-meta">Jan – May 2025</span>-->
+            </div>
+            <div class="card-org">AI Agents · NLP</div>
+            <p class="card-description">
+              <strong>Built an LLM pipeline to reroute buses from unstructured news:</strong> Designed the News Parser Agent with a two-stage classification and extraction pipeline, implemented confidence scoring for operator review thresholds, and orchestrated the full end-to-end system.
+            </p>
+          </div>
+        </div>
+
+        <div class="exp-card accent-teal clickable" onclick="window.location='project-power-demand.html'">
           <div class="accent-bar"></div>
           <div class="card-body">
             <div class="card-header">
               <h3>Power Demand Prediction Based on Weather Data</h3>
-              <!-- <span class="card-meta">Jan – May 2025</span> -->
+              <!--<span class="card-meta">Jan – May 2025</span>-->
             </div>
             <div class="card-org">Machine Learning Engineering</div>
             <p class="card-description">
@@ -110,7 +108,6 @@
           </div>
         </div>
 
-        
       </div>
     </section>
   </main>
@@ -124,5 +121,10 @@
       <div class="footer-copy">&copy; 2026 Sanay Tralshawala</div>
     </div>
   </footer>
+
+  <style>
+    .exp-card.clickable { cursor: pointer; }
+    .exp-card.clickable:hover { transform: translateY(-3px); transition: transform 0.2s ease; }
+  </style>
 </body>
 </html>
