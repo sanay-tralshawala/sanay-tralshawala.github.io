@@ -51,66 +51,102 @@
 
       <div class="experience-header">
         <h2>Agentic Bus Routing from Disruption Data</h2>
-        <div class="experience-meta">Jan – May 2025 · Carnegie Mellon University · AI Agents · NLP</div>
+        <div class="experience-meta">Carnegie Mellon University · AI Agents · Natural Language Processing</div>
       </div>
 
       <!-- PLACEHOLDER: system architecture diagram or rerouting map screenshot -->
-      <img src="[PLACEHOLDER: system-architecture.png]" alt="System architecture and orchestration pipeline" class="experience-image">
+      <img src="Projects/Agentic_Bus_Routes/Agentic Bus Project.png" alt="System architecture and orchestration pipeline" class="experience-image">
 
       <h3>Overview</h3>
       <p>
-        Transit disruptions — road closures, accidents, severe weather — are a daily reality for public bus networks. The challenge is that disruption information arrives as unstructured text (news articles, operator reports), and the gap between reading that text and producing an updated bus route is currently filled by manual dispatcher judgment under time pressure.
+        Transit disruptions — road closures, accidents, severe weather — are a daily reality 
+        for public bus networks. The challenge is that disruption information arrives as 
+        unstructured text (news articles, operator reports), and the gap between reading 
+        that text and producing an updated bus route is currently filled by manual dispatcher 
+        judgment under time pressure.
       </p>
       <p>
-        This project proposes an <strong>agentic backend pipeline</strong> that closes that gap automatically. A raw news article goes in; structured alternative route assignments come out. The system was designed for Pittsburgh Regional Transit (PRT) and tested on single-road and multi-road disruption scenarios across the city's street grid.
+        This project proposes an <strong>agentic backend pipeline</strong> that closes that 
+        gap automatically. A raw news article goes in; structured alternative route assignments
+        come out. The system was designed for Pittsburgh Regional Transit (PRT) and tested on
+        single-road and multi-road disruption scenarios across the city's street grid.
+      </p>
+      <p>
+        The pipeline consists of a LangChain-based News Parser Agent that extracts structured disruption data from raw text, a 
+        route planning agent that takes in this informtion and determines alternative routes based on
+        the Google Maps API which is loaded to a graphical interface for appropriate planning.
       </p>
 
-      <h3>My Contributions</h3>
+      <img src="Projects/Agentic_Bus_Routes/Architecture.png" alt="System architecture and orchestration pipeline" class="experience-image">
+
       <p>
-        This was a four-person team project. My core ownership was the <strong>News Parser Agent</strong>, the <strong>confidence scoring system</strong>, and the <strong>end-to-end orchestration pipeline</strong>.
+        TMy core ownership was the <strong>News Parser Agent</strong>, the <strong>confidence
+           scoring system</strong>, and the <strong>pipeline architecture</strong>.
       </p>
 
       <h3>News Parser Agent</h3>
       <p>
-        The News Parser Agent is a LangChain-based agent responsible for converting raw text into structured disruption data. I designed it as a two-stage pipeline to reduce cognitive load on each sub-agent:
+        The News Parser Agent is a LangChain-based agent responsible for converting raw text 
+        into structured disruption data. It was designed as a two-stage pipeline to reduce cognitive 
+        load on each sub-agent:
       </p>
       <p>
-        <strong>Stage 1 — Disruption Event Classification:</strong> The first sub-agent determines whether the input text describes a road disruption at all. It outputs a JSON object with a classification (true/false), a detailed explanation, and a confidence score. If the article is irrelevant — a sports update, a weather forecast with no traffic impact — the pipeline exits here, logging the result without triggering any routing actions.
+        <strong>Stage 1 — Disruption Event Classification:</strong> The first sub-agent 
+        determines whether the input text describes a road disruption at all. It outputs a 
+        JSON object with a classification (true/false), a detailed explanation, and a 
+        confidence score. If the article is irrelevant — a sports update, a weather forecast 
+        with no traffic impact — the pipeline exits here, logging the result without triggering 
+        any routing actions.
       </p>
       <p>
-        <strong>Stage 2 — Disruption Event Description:</strong> If Stage 1 classifies a disruption, the full article and Stage 1's explanation are passed to a second sub-agent. This agent extracts structured fields: affected roads, intersections, neighborhoods, area description, severity, estimated duration, and a source quote. It is explicitly instructed to use only information present in the article and to be specific to Pittsburgh geography, preventing hallucinated locations.
+        <strong>Stage 2 — Disruption Event Description:</strong> If Stage 1 classifies a 
+        disruption, the full article and Stage 1's explanation are passed to a second sub-agent. 
+        This agent extracts structured fields: affected roads, intersections, neighborhoods, area 
+        description, severity, estimated duration, and a source quote. It is explicitly instructed
+        to use only information present in the article and to be specific to Pittsburgh geography,
+        preventing hallucinated locations.
       </p>
 
       <!-- PLACEHOLDER: news parser pipeline diagram -->
-      <img src="[PLACEHOLDER: news-parser-pipeline.png]" alt="Two-stage news parser pipeline" class="experience-image">
+      <img src="Projects/Agentic_Bus_Routes/newsparserfigure.png" alt="Two-stage news parser pipeline" class="experience-image">
 
       <h3>Confidence Scoring</h3>
       <p>
-        Both sub-agents produce a confidence score (0.0–1.0) as part of their structured output, representing the model's self-assessed certainty that the extraction is accurate and actionable. I designed a threshold-based filtering mechanism: articles below a minimum confidence are flagged for operator review rather than being auto-routed.
+        Both sub-agents produce a confidence score (0.0–1.0) as part of their structured 
+        output, representing the model's self-assessed certainty that the extraction is 
+        accurate and actionable. A threshold-based filtering mechanism was designed: articles
+         below a minimum confidence are flagged for operator review rather than being 
+         auto-routed.
       </p>
       <p>
-        This adds a human-in-the-loop layer that matters in practice — a vague report ("some traffic issues in the East End") should not trigger automatic rerouting on its own. In testing, the system correctly assigned low confidence (0.40) to vague bulletins, near-zero confidence (0.02) to irrelevant articles, and high confidence (0.88–0.95) to specific road closure reports with named intersections.
+        This adds a human-in-the-loop layer that matters in practice — a vague report 
+        ("some traffic issues in the East End") should not trigger automatic rerouting on 
+        its own. In testing, the system correctly assigned low confidence (0.40) to vague 
+        bulletins, near-zero confidence (0.02) to irrelevant articles, and high confidence
+         (0.88–0.95) to specific road closure reports with named intersections.
       </p>
-
-      <h3>Orchestration Pipeline</h3>
-      <p>
-        I designed and wrote the overall six-stage orchestration that connects all components: (1) parse the input article, (2) extract structured disruption fields, (3) build disruption corridors from extracted addresses, (4) identify affected PRT routes via the Google Maps and Geocoding APIs, (5) substitute disrupted stops with nearest available alternatives on unaffected routes, and (6) compile a structured summary.
-      </p>
-      <p>
-        The pipeline supports two entry paths — a live operator-provided article or a synthetic news article generated by the team's MCP-based news generation tool. Both paths converge into the same sequential pipeline. A key design goal was <strong>graceful failure</strong>: each stage is independently debuggable, and low-confidence inputs exit early without corrupting downstream state.
-      </p>
-
-      <!-- PLACEHOLDER: rerouting map screenshot (Forbes Ave single-road scenario) -->
-      <img src="[PLACEHOLDER: rerouting-map.png]" alt="Single-road rerouting map for Forbes Avenue closure" class="experience-image">
 
       <h3>Results</h3>
       <p>
-        The pipeline was evaluated on four scenario types. For an <strong>irrelevant article</strong> (Steelers roster news), the parser correctly assigned confidence 0.02 and suppressed routing. For a <strong>vague bulletin</strong> (generic East End traffic alert), it returned confidence 0.40 with no specific roads — appropriate for operator review. For a <strong>single-road closure</strong> (Forbes Avenue, Squirrel Hill), the system produced a confident extraction (0.95) and generated a correct neighborhood-scale detour. For a <strong>multi-road corridor disruption</strong> (Liberty Avenue through the Strip District), it correctly identified a corridor-scale event (0.88) and generated a geographically distinct northward bypass.
+        The pipeline was evaluated on four scenario types. For an 
+        <strong>irrelevant article</strong>, the parser correctly assigned confidence 0.02 
+        and suppressed routing. For a <strong>vague bulletin</strong> (generic 
+        traffic alert), it returned confidence 0.40 with no specific roads — appropriate 
+        for operator review. For a <strong>single-road closure</strong>,
+        the system produced a confident extraction (0.95) and generated a correct 
+        neighborhood-scale detour. For a <strong>multi-road corridor disruption</strong>, it 
+        correctly identified a corridor-scale event (0.88) and generated a geographically 
+        distinct bypass.
       </p>
 
       <h3>Key Takeaways</h3>
       <p>
-        Decomposing the parsing task into classification then extraction — rather than asking one agent to do both — significantly improved reliability. The confidence mechanism proved its value: a single agent asked to both classify and extract tends to commit to extractions it isn't sure about, whereas separating the stages surfaces uncertainty earlier. The hardest remaining challenge is spatially vague inputs; the system struggles when location is implied rather than stated, which points toward future work in map-grounded retrieval or richer geographic reasoning.
+        Decomposing the parsing task into classification then extraction — rather than
+        asking one agent to do both — significantly improved reliability. Spatially vague inputs
+        have proved difficult for the system to handle accurately, requiring further context to determine the nature of the article. 
+        Because of the nature of the input, an operator can easily provide in a prompt for a specific context or to initate a manual 
+        planning but this points toward future work in map-grounded retrieval or richer 
+        geographic reasoning.
       </p>
 
       <h3>Skills & Tools</h3>
