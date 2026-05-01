@@ -2,302 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Experiences - Sanay Tralshawala</title>
+  <title>Projects - Sanay Tralshawala</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      background-color: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      background-color: #1f2933;
-      color: white;
-      padding: 1.5rem;
-    }
-
-    header h1 {
-      margin: 0 0 0.25rem 0;
-      font-size: 2rem;
-    }
-
-    .education-info {
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      line-height: 1.4;
-    }
-
-    .education-info div {
-      margin-bottom: 0.5rem;
-    }
-
-    .degree {
-      font-weight: bold;
-    }
-
-    .school {
-      font-size: 0.85rem;
-      color: #e0e0e0;
-    }
-
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    section {
-      background-color: white;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      border-radius: 6px;
-    }
-
-    h2 {
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 0.5rem;
-    }
-
-    .experience-item {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: center;
-      margin-bottom: 3rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid #eee;
-    }
-
-    .experience-item:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-
-    .experience-item.reverse {
-      direction: rtl;
-    }
-
-    .experience-item.reverse > * {
-      direction: ltr;
-    }
-
-    .experience-image {
-      background-color: #f0f0f0;
-      height: 250px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-style: italic;
-      color: #999;
-      overflow: hidden;
-    }
-
-    .experience-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .experience-content h3 {
-      color: #1f2933;
-      margin-top: 0;
-    }
-
-    .experience-meta {
-      font-size: 0.9rem;
-      color: #666;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-    }
-
-    .experience-description {
-      margin-bottom: 1rem;
-      color: #555;
-    }
-
-    .more-info-btn {
-      display: inline-block;
-      padding: 0.6rem 1.2rem;
-      background-color: #1f2933;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-
-    .more-info-btn:hover {
-      background-color: #2a3a47;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #e5e7eb;
-      font-size: 0.9rem;
-    }
-
-    .icon-links {
-      display: flex;
-      gap: 16px;
-      align-self: flex-start;
-    }
-
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
-
-    @media (max-width: 768px) {
-      .experience-item {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .experience-item.reverse {
-        direction: ltr;
-      }
-
-      .experience-image {
-        height: 200px;
-      }
-    }
-
-    .under-construction {
-      color: #d32f2f;
-      font-weight: bold;
-      font-style: italic;
-      margin: 2rem 0;
-      padding: 1rem;
-      background-color: #ffebee;
-      border-left: 4px solid #d32f2f;
-      border-radius: 4px;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <!-- Header and Navigation -->
   <header>
     <div class="header-top">
       <div>
         <h1>Sanay Tralshawala</h1>
         <div class="education-info">
           <div>
-            <div class="degree">M.S. Artificial Intelligence Engineering - Mechanical Engineering</div>
-            <div class="school">Carnegie Mellon University - December 2026</div>
+            <span class="degree">M.S. Artificial Intelligence Engineering</span>
+            <span class="school"> · Carnegie Mellon University</span>
           </div>
-          <!--
-          <div>
-            <div class="degree">B.S. Mechanical Engineering</div>
-            <div class="school">Rensselaer Polytechnic Institute - May 2025</div>
-          </div>
-        -->
         </div>
       </div>
       <div class="icon-links">
-        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank" aria-label="LinkedIn">
           <img class="icon" src="linkedin.svg" alt="LinkedIn">
         </a>
-        <a href="mailto:sanaytralshawala@gmail.com">
+        <a href="mailto:sanaytralshawala@gmail.com" aria-label="Email">
           <img class="icon" src="mail.svg" alt="Email">
         </a>
       </div>
     </div>
 
     <nav>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('nav ul').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Me</a></li>
         <li><a href="experiences.html">Experiences</a></li>
-        <li><a href="projects.html">Projects</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
         <li><a href="resume.html">Resume</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-        <!-- Projects Section -->
     <section>
       <h2>Projects</h2>
 
-      <div class="experience-item">
-        <div class="experience-image">
-Coming soon!        </div>
-        <div class="experience-content">
-          <h3>Visualization and 3D Modeling of Microwave Food</h3>
-          <div class="experience-meta">October - December 2025 • Computer Vision Engineering</div>
-          <p class="experience-description">
-            <strong>Generated 3D thermal models to optimize cooking:</strong> Combined thermal imaging, color detection, and depth data using frame subtraction techniques to create temperature-annotated 3D models of rotating food. Generated actionable cooking suggestions by analyzing real-time thermal patterns.
-          </p>
-          <!-- <a href="project-1.html" class="more-info-btn">Learn More →</a> -->
+      <div class="card-grid">
+        <div class="exp-card accent-teal">
+          <div class="accent-bar"></div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Visualization and 3D Modeling of Microwave Food</h3>
+              <span class="card-meta">Oct – Dec 2025</span>
+            </div>
+            <div class="card-org">Computer Vision Engineering</div>
+            <p class="card-description">
+              <strong>Generated 3D thermal models to optimize cooking:</strong> Combined thermal imaging, color detection, and depth data using frame subtraction techniques to create temperature-annotated 3D models of rotating food. Generated actionable cooking suggestions by analyzing real-time thermal patterns.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="experience-item reverse">
-        <div class="experience-image">
-Coming soon!        </div>
-        <div class="experience-content">
-          <h3>Power Demand Prediction Based on Weather Data</h3>
-          <div class="experience-meta">January - May 2025 • Machine Learning Engineering</div>
-          <p class="experience-description">
-            <strong>Achieved 87% model accuracy predicting grid demand:</strong> Analyzed regional weather and power load data using feature engineering and K-means clustering. Built RNN (R² = 0.87) and Random Forest (R² = 0.63) models with hyperparameter optimization to forecast energy demand patterns.
-          </p>
-          <!-- <a href="project-2.html" class="more-info-btn">Learn More →</a> -->
+        <div class="exp-card accent-purple">
+          <div class="accent-bar"></div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Power Demand Prediction Based on Weather Data</h3>
+              <span class="card-meta">Jan – May 2025</span>
+            </div>
+            <div class="card-org">Machine Learning Engineering</div>
+            <p class="card-description">
+              <strong>Achieved 87% model accuracy predicting grid demand:</strong> Analyzed regional weather and power load data using feature engineering and K-means clustering. Built RNN (R² = 0.87) and Random Forest (R² = 0.63) models with hyperparameter optimization to forecast energy demand patterns.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="experience-item">
-        <div class="experience-image">
-Coming soon!        </div>
-        <div class="experience-content">
-          <h3>Thermodynamic Flow and Heat Transfer Analysis</h3>
-          <div class="experience-meta">January - May 2023 • Engineering Research</div>
-          <p class="experience-description">
-            <strong>Elucidated multiphase flow behavior through experimental investigation:</strong> Conducted experiments on complex fluid flow and heat transfer in thermodynamic systems. Analyzed pressure variations caused by mass flow rates, refined automated experimental procedures, and improved understanding of multiphase flow dynamics.
-          </p>
-          <!-- <a href="project-3.html" class="more-info-btn">Learn More →</a> -->
+        <div class="exp-card accent-green">
+          <div class="accent-bar"></div>
+          <div class="card-body">
+            <div class="card-header">
+              <h3>Thermodynamic Flow and Heat Transfer Analysis</h3>
+              <span class="card-meta">Jan – May 2023</span>
+            </div>
+            <div class="card-org">Engineering Research</div>
+            <p class="card-description">
+              <strong>Elucidated multiphase flow behavior through experimental investigation:</strong> Conducted experiments on complex fluid flow and heat transfer in thermodynamic systems. Analyzed pressure variations caused by mass flow rates, refined automated experimental procedures, and improved understanding of multiphase flow dynamics.
+            </p>
+          </div>
         </div>
       </div>
     </section>
-
-    <div class="under-construction">
-      🚧 Site Under Construction - Experience and project details are coming soon!
-    </div>
   </main>
 
   <footer>
-    Sanay Tralshawala
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="mailto:sanaytralshawala@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">LinkedIn</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Sanay Tralshawala</div>
+    </div>
   </footer>
 </body>
 </html>
