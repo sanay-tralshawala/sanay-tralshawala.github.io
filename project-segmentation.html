@@ -51,70 +51,129 @@
 
       <div class="experience-header">
         <h2>Semantic Segmentation of Satellite Imagery</h2>
-        <div class="experience-meta">Jan – May 2025 · Carnegie Mellon University · Deep Learning</div>
+        <div class="experience-meta">Carnegie Mellon University · Deep Learning</div>
       </div>
 
       <!-- PLACEHOLDER: example segmentation output (RGB input, ground truth, prediction) -->
-      <img src="[PLACEHOLDER: segmentation-result.png]" alt="RGB input, ground truth, and model prediction" class="experience-image">
+      <img src="Projects/Sat_segmentation/model_output_ex.png" alt="RGB input, ground truth, and model prediction" class="experience-image">
 
       <h3>Overview</h3>
       <p>
-        High-resolution aerial imagery enables automated land-cover mapping at scale — a capability critical for urban planning, environmental monitoring, and disaster response. This project benchmarks three deep learning architectures on the <strong>FLAIR-1 dataset</strong>, a French aerial imagery benchmark providing 512×512 image patches with five input channels (RGB, near-infrared, elevation) and 19 semantic classes, consolidated here into six broad land-cover categories: built non-vegetated surfaces, bare non-vegetated surfaces, woody vegetation, cultivated land, herbaceous vegetation, and water.
+        High-resolution aerial imagery enables automated land-cover mapping at scale — a 
+        capability critical for urban planning, environmental monitoring, and disaster 
+        response. This project benchmarks three deep learning architectures on the <strong>
+          FLAIR-1 dataset</strong>, a French aerial imagery benchmark providing 512×512 
+          image patches with five input channels (RGB, near-infrared, elevation) and 19 
+          semantic classes, consolidated here into six broad land-cover categories: built
+           non-vegetated surfaces, bare non-vegetated surfaces, woody vegetation, cultivated 
+           land, herbaceous vegetation, and water.
       </p>
       <p>
-        The study addresses three questions: (1) do modern convolutional architectures and self-supervised pretraining improve segmentation over a ResNet34 U-Net baseline; (2) does adding NIR and elevation channels improve RGB-only performance; and (3) what per-class confidence guarantees can the models provide?
+        The study addresses three questions: (1) do modern convolutional architectures and 
+        self-supervised pretraining improve segmentation over a ResNet34 U-Net baseline; 
+        (2) does adding NIR and elevation channels improve RGB-only performance; and (3) 
+        what per-class confidence guarantees can the models provide?
       </p>
+
+      <img src="Projects/Sat_segmentation/dataset_classes.png" alt="Dataset classes"  style="max-width: 100%; height: auto;">
+
+      <!--
       <p>
         Code and full analysis: <a href="https://github.com/sanay-tralshawala/DLE-Flair-Segmentation/" target="_blank">github.com/sanay-tralshawala/DLE-Flair-Segmentation</a>
       </p>
+      -->
 
+      <!--
       <h3>My Contributions</h3>
       <p>
-        This was a collaborative project. My primary responsibilities were: designing and loading the model architectures for all three models; building the data loader for consistent preprocessing across experiments; leading the DINOv3 ConvNeXt-Tiny training runs; and owning the entire conformal prediction analysis — from framing the statistical question to implementation and write-up.
+        This was a collaborative project. My primary responsibilities were: designing and 
+        loading the model architectures for all three models; building the data loader for 
+        consistent preprocessing across experiments; leading the DINOv3 ConvNeXt-Tiny 
+        training runs; and owning the entire conformal prediction analysis — from framing 
+        the statistical question to implementation and write-up.
       </p>
+      -->
 
       <h3>Models & Architecture</h3>
       <p>
-        Three architectures were compared, all evaluated on the same train/validation/test splits (80/10/10) with mIoU as the primary metric.
+        Three architectures were compared, all evaluated on the same train/validation/test 
+        splits (80/10/10) with mIoU as the primary validation metric.
       </p>
       <p>
-        <strong>ResNet34 U-Net (baseline)</strong> — an encoder-decoder with skip connections. The ResNet34 backbone uses residual connections to prevent vanishing gradients; the decoder upsamples back to full resolution. ~24.4M parameters.
+        <strong>ResNet34 U-Net (baseline)</strong> — an encoder-decoder with skip 
+        connections. The ResNet34 backbone uses residual connections to prevent vanishing 
+        gradients; the decoder upsamples back to full resolution. ~24.4M parameters.
       </p>
       <p>
-        <strong>ConvNeXt-Tiny</strong> — a modernized CNN that borrows design choices from Vision Transformers: larger kernels, depthwise convolutions, inverted bottlenecks, GELU activations, and LayerNorm. The larger receptive field captures broader spatial context for land-cover classes. Initialized from supervised ImageNet pretrained weights. ~31.2M parameters.
+        <strong>ConvNeXt-Tiny</strong> — a modernized CNN that borrows design choices 
+        from Vision Transformers: larger kernels, depthwise convolutions, inverted 
+        bottlenecks, GELU activations, and LayerNorm. The larger receptive field captures 
+        broader spatial context for land-cover classes. Initialized from supervised 
+        ImageNet pretrained weights. ~31.2M parameters.
       </p>
       <p>
-        <strong>DINOv3 ConvNeXt-Tiny</strong> — the same ConvNeXt-Tiny architecture, but initialized from Meta's DINOv3 self-supervised weights pretrained on 1.6 billion high-resolution images. A lightweight 2-layer convolutional decoder head maps learned features to the 6-class pixel output. This was the model I led, motivated by testing whether internet-scale self-supervised pretraining produces better generalization under limited fine-tuning data.
+        <strong>DINOv3 ConvNeXt-Tiny</strong> — the same ConvNeXt-Tiny architecture, but 
+        initialized from Meta's DINOv3 self-supervised weights pretrained on 1.6 billion 
+        high-resolution images. A lightweight 2-layer convolutional decoder head maps 
+        learned features to the 6-class pixel output. This was motivated by
+        testing whether internet-scale self-supervised pretraining produces better 
+        generalization under limited fine-tuning data.
       </p>
 
       <!-- PLACEHOLDER: training loss / mIoU curves -->
-      <img src="[PLACEHOLDER: training-curves.png]" alt="Training and validation loss and mIoU curves" class="experience-image">
+      <img src="Projects/Sat_segmentation/val_curves.png" alt="Training and validation loss and mIoU curves" class="experience-image">
 
       <h3>Results</h3>
       <p>
-        DINOv3 ConvNeXt-Tiny achieved the best test mIoU of <strong>0.491</strong> in the 5-channel configuration, outperforming both the ResNet34 U-Net baseline (0.460) and the supervised-pretrained ConvNeXt-Tiny (0.447 on test, despite higher validation mIoU — a sign of overfitting to the toy validation split). This suggests that self-supervised pretraining on internet-scale data provides a meaningful generalization advantage over supervised pretraining, even when the architecture is identical.
+        DINOv3 ConvNeXt-Tiny achieved the best test mIoU of <strong>0.491</strong> in the 
+        5-channel configuration, outperforming both the ResNet34 U-Net baseline (0.460) and 
+        the supervised-pretrained ConvNeXt-Tiny (0.447 on test, despite higher validation 
+        mIoU — a sign of overfitting to the toy validation split). This suggests that 
+        self-supervised pretraining on internet-scale data provides a meaningful 
+        generalization advantage over supervised pretraining, even when the architecture is 
+        identical.
       </p>
       <p>
-        The 5-channel ablation showed that adding NIR and elevation improved ConvNeXt-Tiny by +0.037 mIoU and DINOv3 by +0.013, but degraded ResNet34 U-Net by -0.024, pointing to differences in how robustly each backbone integrates newly initialized input channels.
+        The 5-channel ablation showed that adding NIR and elevation improved ConvNeXt-Tiny 
+        by +0.037 mIoU and DINOv3 by +0.013, but degraded ResNet34 U-Net by -0.024, 
+        pointing to differences in how robustly each backbone integrates newly initialized
+         input channels.
       </p>
 
       <h3>Conformal Prediction & Uncertainty Analysis</h3>
       <p>
-        To understand model confidence and per-class coverage guarantees, I implemented a <strong>conformal prediction</strong> analysis. The question: what prediction set size is needed at each pixel so that the true class is included 90% of the time?
+        To understand model confidence and per-class coverage guarantees, I implemented a 
+        <strong>conformal prediction</strong> analysis. The question: what prediction set size 
+        is needed at each pixel so that the true class is included 90% of the time?
       </p>
       <p>
-        The validation set served as the calibration set. Softmax thresholds were computed per model to achieve 90% marginal coverage across the test set. Results revealed that no model reliably meets 90% overall coverage. The <em>Bare (Non-vegetated)</em> class failed severely across all six model configurations (below 50%), consistent with it representing only 4.7% of the dataset. The <em>Built (Non-vegetated)</em> class performed exceptionally well (93–98%), while Water coverage was strong only for DINOv3-based models.
+        The validation set served as the calibration set. Softmax thresholds were computed 
+        per model to achieve 90% marginal coverage across the test set. Results revealed that 
+        no model reliably meets 90% overall coverage. The <em>Bare (Non-vegetated)</em> class 
+        failed severely across all six model configurations (below 50%), consistent with it 
+        representing only 4.7% of the dataset. The <em>Built (Non-vegetated)</em> class performed 
+        exceptionally well (93–98%), while Water coverage was strong only for DINOv3-based models.
+
       </p>
       <p>
-        Average prediction set sizes ranged from 1.38–1.52, suggesting low apparent uncertainty — but this is misleading, as high-confidence majority classes dominate the average and mask critical under-coverage in minority classes. This analysis exposed a direct link between class frequency and model confidence that would persist until the full 65GB FLAIR-1 dataset is used for training.
+        Average prediction set sizes ranged from 1.38–1.52, suggesting low apparent uncertainty — 
+        but this is misleading, as high-confidence majority classes dominate the average and mask
+         critical under-coverage in minority classes. This analysis exposed a direct link between
+          class frequency and model confidence that would persist until the full 65GB FLAIR-1 
+        dataset is used for training.
       </p>
 
       <!-- PLACEHOLDER: conformal prediction set size visualization -->
-      <img src="[PLACEHOLDER: conformal-prediction.png]" alt="Conformal prediction set size on test image" class="experience-image">
+      <img src="Projects/Sat_segmentation/Testimage results.jpg" alt="Conformal prediction set size on test image" class="experience-image">
 
       <h3>Key Takeaways</h3>
       <p>
-        The results partially support the hypothesis that modern architectures and self-supervised pretraining improve performance. DINOv3 wins on test generalization; supervised ConvNeXt overfit to the validation split. The toy dataset limits strong conclusions — the immediate next step is training on the full FLAIR-1 dataset with a fully independent conformal calibration set. The conformal prediction work highlighted that low average uncertainty scores can be deeply misleading when class distributions are imbalanced.
+        The results partially support the hypothesis that modern architectures and 
+        self-supervised pretraining improve performance. DINOv3 wins on test generalization; 
+        supervised ConvNeXt overfit to the validation split. The use the full FLAIR-1 dataset would allow for 
+        more concrete conclusions with the ability of have an independent calibration set. The conformal prediction work 
+        highlighted that low average uncertainty scores can be deeply misleading when class distributions 
+        are imbalanced.
       </p>
 
       <h3>Skills & Tools</h3>
