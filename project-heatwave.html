@@ -56,7 +56,7 @@
 
       <!-- PLACEHOLDER: hero image of thermal overlay or 3D point cloud -->
       <video class="experience-image" autoplay loop muted playsinline>
-  <source src="thermal_overlay.mp4" type="video/mp4">
+  <source src="Projects/Microwave%20modeling/thermal_overlay.mp4" type="video/mp4">
   Resulting thermal overlay on RGB frame
 </video>
 
@@ -77,7 +77,7 @@
       </p>
 
       <!-- PLACEHOLDER: apparatus setup photo -->
-      <img src="apparatus-setup.png" alt="Camera rig and turntable setup" class="experience-image">
+      <img src="Projects/Microwave%20modeling/apparatus-setup.png" alt="Camera rig and turntable setup" class="experience-image">
 
 
       <h3>Thermal Analysis</h3>
@@ -99,7 +99,7 @@
       </p>
 
       <!-- PLACEHOLDER: screenshot of thermal analysis GUI -->
-      <img src="thermal-gui.png" alt="Thermal analysis GUI dashboard" class="experience-image">
+      <img src="Projects/Microwave%20modeling/thermal-gui.png" alt="Thermal analysis GUI dashboard" class="experience-image">
 
       <h3>3D Model Generation</h3>
       <p>
@@ -109,7 +109,8 @@
       </p>
       <p>
         <strong>Stereo depth camera approach:</strong> Using the Intel RealSense D435, 
-        depth and RGB frames are captured as the food rotates. Frame subtraction 
+        depth and RGB frames are captured as the food rotates. Frame cropping based in pixels and depth was
+        performed to isolate the food region. Frame subtraction 
         between consecutive grayscale frames isolates the moving food from the static 
         background, producing a binary mask applied to the depth channel. Per-frame point 
         clouds are created with Open3D and fused incrementally using Iterative Closest 
@@ -118,12 +119,14 @@
         full surface of the food.
       </p>
       
+      <img src="Projects/Microwave%20modeling/depth-cropping.png" alt ="Depth frame cropping and masking process" class="experience-image">
 
       <!-- PLACEHOLDER: side-by-side of stereo point cloud vs NeRF mesh -->
 <video class="experience-image" autoplay loop muted playsinline>
-  <source src="depth_icp.mp4" type="video/mp4">
+  <source src="Projects/Microwave%20modeling/depth_icp.mp4" type="video/mp4">
   ICP video of Hotpocket
 </video>
+
 
       <h3>Results & Key Takeaways</h3>
       <p>
