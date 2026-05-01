@@ -4,225 +4,41 @@
   <meta charset="UTF-8">
   <title>About Me - Sanay Tralshawala</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      background-color: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      background-color: #1f2933;
-      color: white;
-      padding: 1.5rem;
-    }
-
-    header h1 {
-      margin: 0 0 0.25rem 0;
-      font-size: 2rem;
-    }
-
-    .education-info {
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      line-height: 1.4;
-    }
-
-    .education-info div {
-      margin-bottom: 0.5rem;
-    }
-
-    .degree {
-      font-weight: bold;
-    }
-
-    .school {
-      font-size: 0.85rem;
-      color: #e0e0e0;
-    }
-
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    section {
-      background-color: white;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      border-radius: 6px;
-    }
-
-    h2 {
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 0.5rem;
-    }
-
-    h3 {
-      color: #1f2933;
-      margin-top: 1.5rem;
-    }
-
-    .placeholder {
-      background-color: #f5f5f5;
-      border: 2px dashed #ccc;
-      padding: 1rem;
-      margin: 1rem 0;
-      font-style: italic;
-      color: #666;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #e5e7eb;
-      font-size: 0.9rem;
-    }
-
-    .icon-links {
-      display: flex;
-      gap: 16px;
-      align-self: flex-start;
-    }
-
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
-
-    ul {
-      margin: 1rem 0;
-      padding-left: 1.5rem;
-    }
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-
-    a {
-      color: #0066cc;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .about-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-      margin: 2rem 0;
-    }
-
-    .about-image {
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
-
-    .about-image img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .about-text h3 {
-      margin-top: 0;
-    }
-
-    .about-text p {
-      margin-bottom: 1rem;
-      color: #555;
-    }
-
-    .about-text ul {
-      margin: 1rem 0;
-      padding-left: 1.5rem;
-    }
-
-    .about-text li {
-      margin-bottom: 0.5rem;
-    }
-
-    @media (max-width: 768px) {
-      .about-container {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .under-construction {
-      font-style: italic;
-      color: #a00;
-      margin: 1.5rem 0;
-      padding: 1rem;
-      background-color: #fee;
-      border-radius: 4px;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <!-- Header and Navigation -->
   <header>
     <div class="header-top">
       <div>
         <h1>Sanay Tralshawala</h1>
         <div class="education-info">
           <div>
-            <div class="degree">M.S. Artificial Intelligence Engineering - Mechanical Engineering</div>
-            <div class="school">Carnegie Mellon University - December 2026</div>
+            <span class="degree">M.S. Artificial Intelligence Engineering</span>
+            <span class="school"> · Carnegie Mellon University</span>
           </div>
-          <!--
-          <div>
-            <div class="degree">B.S. Mechanical Engineering</div>
-            <div class="school">Rensselaer Polytechnic Institute - May 2025</div>
-          </div>
-        -->
         </div>
       </div>
       <div class="icon-links">
-        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank" aria-label="LinkedIn">
           <img class="icon" src="linkedin.svg" alt="LinkedIn">
         </a>
-        <a href="mailto:sanaytralshawala@gmail.com">
+        <a href="mailto:sanaytralshawala@gmail.com" aria-label="Email">
           <img class="icon" src="mail.svg" alt="Email">
         </a>
       </div>
     </div>
 
     <nav>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('nav ul').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
       <ul>
         <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About Me</a></li>
+        <li><a href="about.html" class="active">About Me</a></li>
         <li><a href="experiences.html">Experiences</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="resume.html">Resume</a></li>
@@ -231,29 +47,30 @@
   </header>
 
   <main>
-    <!-- About Me Section -->
     <section>
       <h2>About Me</h2>
-      
+
       <div class="about-container">
         <div class="about-image">
           <img src="profile-image.jpeg" alt="Sanay Tralshawala">
         </div>
         <div class="about-text">
           <p>
-            I'm a graduate student at Carnegie Mellon University pursuing a Master of Science in Artificial Intelligence Engineering with a concentration in Robotics & Controls. With a strong foundation in mechanical engineering and a passion for AI, I focus on solving complex problems at the intersection of perception, autonomy, and controls.
-            I have previously completed a Bachelor of Science in Mechanical Engineering at Rensselaer Polytechnic Institute, where I developed a broad skill set in engineering principles, design, and analysis. My academic and research experiences have equipped me with expertise in computer vision, machine learning, robotics, and engineering design.
+            I'm a graduate student at Carnegie Mellon University pursuing a Master of Science in Artificial Intelligence Engineering with a concentration in Robotics &amp; Controls. With a strong foundation in mechanical engineering and a passion for AI, I focus on solving complex problems at the intersection of perception, autonomy, and controls.
           </p>
-          
+          <p>
+            I previously completed a Bachelor of Science in Mechanical Engineering at Rensselaer Polytechnic Institute, where I developed a broad skill set in engineering principles, design, and analysis. My academic and research experiences have equipped me with expertise in computer vision, machine learning, robotics, and engineering design.
+          </p>
+
           <h3>Current Focus</h3>
           <p>
             My research at the Computational Engineering and Robotics Lab (CERLAB) centers on Spatial AI and Vision Foundation models for Simultaneous Localization and Mapping (SLAM) systems. I'm particularly interested in how advanced computer vision can improve object re-identification and robustness in autonomous systems.
           </p>
 
-          <h3>Expertise & Interests</h3>
+          <h3>Expertise &amp; Interests</h3>
           <ul>
             <li><strong>Artificial Intelligence:</strong> Computer vision, machine learning, Vision Foundation models, neural networks</li>
-            <li><strong>Robotics & Controls:</strong> Autonomous systems, Model-Predictive Control, robot kinematics</li>
+            <li><strong>Robotics &amp; Controls:</strong> Autonomous systems, Model-Predictive Control, robot kinematics</li>
             <li><strong>Engineering:</strong> Computer-Aided Design, structural analysis, thermodynamic systems, Probabilistic Risk Assessment (PRA)</li>
             <li><strong>Technical Skills:</strong> Python, MATLAB, C++, Solidworks, TensorFlow, PyTorch</li>
           </ul>
@@ -265,20 +82,24 @@
         </div>
       </div>
 
-      <div class="under-construction">
-        🚧 More content coming soon - case studies and detailed project information
-      </div>
-
       <h3>Connect With Me</h3>
-      <p>
-        <strong>Email:</strong> <a href="mailto:sanaytralshawala@gmail.com">sanaytralshawala@gmail.com</a><br>
-        <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sanayt/" target="_blank">linkedin.com/in/sanayt/</a>
-      </p>
+      <div class="info-box">
+        <p>
+          <strong>Email:</strong> <a href="mailto:sanaytralshawala@gmail.com">sanaytralshawala@gmail.com</a><br>
+          <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sanayt/" target="_blank">linkedin.com/in/sanayt/</a>
+        </p>
+      </div>
     </section>
   </main>
 
   <footer>
-    Sanay Tralshawala
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="mailto:sanaytralshawala@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">LinkedIn</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Sanay Tralshawala</div>
+    </div>
   </footer>
 </body>
 </html>

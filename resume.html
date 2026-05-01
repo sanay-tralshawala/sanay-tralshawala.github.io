@@ -4,250 +4,58 @@
   <meta charset="UTF-8">
   <title>Resume - Sanay Tralshawala</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      background-color: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      background-color: #1f2933;
-      color: white;
-      padding: 1.5rem;
-    }
-
-    header h1 {
-      margin: 0 0 0.25rem 0;
-      font-size: 2rem;
-    }
-
-    .education-info {
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      line-height: 1.4;
-    }
-
-    .education-info div {
-      margin-bottom: 0.5rem;
-    }
-
-    .degree {
-      font-weight: bold;
-    }
-
-    .school {
-      font-size: 0.85rem;
-      color: #e0e0e0;
-    }
-
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    section {
-      background-color: white;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      border-radius: 6px;
-    }
-
-    h2 {
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 0.5rem;
-    }
-
-    h3 {
-      color: #1f2933;
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .placeholder {
-      background-color: #f5f5f5;
-      border: 2px dashed #ccc;
-      padding: 1rem;
-      margin: 1rem 0;
-      font-style: italic;
-      color: #666;
-    }
-
-    .info-box {
-      background-color: #f9f9f9;
-      border-left: 4px solid #1f2933;
-      padding: 1rem;
-      margin: 1rem 0;
-    }
-
-    .resume-actions {
-      display: flex;
-      gap: 1rem;
-      margin: 1.5rem 0;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.7rem 1.5rem;
-      background-color: #1f2933;
-      color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .btn:hover {
-      background-color: #2a3a47;
-    }
-
-    .placeholder {
-      background-color: #f5f5f5;
-      border: 2px dashed #ccc;
-      padding: 1rem;
-      margin: 1rem 0;
-      font-style: italic;
-      color: #666;
-    }
-
-    .icon-links {
-      display: flex;
-      gap: 16px;
-      align-self: flex-start;
-    }
-
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
-
-    ul {
-      margin: 1rem 0;
-      padding-left: 1.5rem;
-    }
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-
-    a {
-      color: #0066cc;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .resume-preview {
-      margin: 2rem 0;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      overflow: hidden;
-      background-color: #f0f0f0;
-    }
-
-    .resume-preview iframe {
-      width: 100%;
-      height: 900px;
-      border: none;
-    }
-
-    .under-construction {
-      font-style: italic;
-      color: #a00;
-      margin: 1.5rem 0;
-      padding: 1rem;
-      background-color: #fee;
-      border-radius: 4px;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <!-- Header and Navigation -->
   <header>
     <div class="header-top">
       <div>
         <h1>Sanay Tralshawala</h1>
         <div class="education-info">
           <div>
-            <div class="degree">M.S. Artificial Intelligence Engineering - Mechanical Engineering</div>
-            <div class="school">Carnegie Mellon University - December 2026</div>
+            <span class="degree">M.S. Artificial Intelligence Engineering</span>
+            <span class="school"> · Carnegie Mellon University</span>
           </div>
-          <!--
-          <div>
-            <div class="degree">B.S. Mechanical Engineering</div>
-            <div class="school">Rensselaer Polytechnic Institute - May 2025</div>
-          </div>
-        -->
         </div>
       </div>
       <div class="icon-links">
-        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank" aria-label="LinkedIn">
           <img class="icon" src="linkedin.svg" alt="LinkedIn">
         </a>
-        <a href="mailto:sanaytralshawala@gmail.com">
+        <a href="mailto:sanaytralshawala@gmail.com" aria-label="Email">
           <img class="icon" src="mail.svg" alt="Email">
         </a>
       </div>
     </div>
 
     <nav>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('nav ul').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
       <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About Me</a></li>
         <li><a href="experiences.html">Experiences</a></li>
         <li><a href="projects.html">Projects</a></li>
-        <li><a href="resume.html">Resume</a></li>
+        <li><a href="resume.html" class="active">Resume</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Resume Section -->
     <section>
       <h2>Resume</h2>
 
-        <div class="resume-actions">
-          <a href="Resume Tralshawala, Sanay_portfolio.pdf" class="btn" target="_blank">Download Resume</a>
-        </div>
-      <div class="resume-preview">
-        <iframe src="Resume Tralshawala, Sanay_portfolio.pdf" title="Resume Preview"></iframe>
+      <div class="resume-actions">
+        <a href="Resume Tralshawala, Sanay_portfolio.pdf" class="btn" target="_blank">Download Resume</a>
       </div>
 
-      <div class="under-construction">
-        🚧 Site Under Construction - Additional resume formatting and options coming soon!
+      <div class="resume-preview">
+        <iframe src="Resume Tralshawala, Sanay_portfolio.pdf" title="Resume Preview"></iframe>
       </div>
 
       <h3>Contact Information</h3>
@@ -257,12 +65,17 @@
           <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sanayt/" target="_blank">linkedin.com/in/sanayt/</a>
         </p>
       </div>
-
     </section>
   </main>
 
   <footer>
-    Sanay Tralshawala
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="mailto:sanaytralshawala@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">LinkedIn</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Sanay Tralshawala</div>
+    </div>
   </footer>
 </body>
 </html>

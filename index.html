@@ -4,180 +4,40 @@
   <meta charset="UTF-8">
   <title>Sanay Tralshawala's Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      background-color: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      background-color: #1f2933;
-      color: white;
-      padding: 1.5rem;
-    }
-
-    header h1 {
-      margin: 0 0 0.25rem 0;
-      font-size: 2rem;
-    }
-
-    .education-info {
-      font-size: 0.9rem;
-      margin-top: 0.5rem;
-      line-height: 1.4;
-    }
-
-    .education-info div {
-      margin-bottom: 0.5rem;
-    }
-
-    .degree {
-      font-weight: bold;
-    }
-
-    .school {
-      font-size: 0.85rem;
-      color: #e0e0e0;
-    }
-
-    .header-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-      padding: 0;
-      margin: 0;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      max-width: 1000px;
-      margin: auto;
-      padding: 2rem;
-    }
-
-    section {
-      background-color: white;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      border-radius: 6px;
-    }
-
-    h2 {
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 0.5rem;
-    }
-
-    h3 {
-      color: #1f2933;
-      margin-top: 1.5rem;
-    }
-
-    .placeholder {
-      background-color: #f5f5f5;
-      border: 2px dashed #ccc;
-      padding: 1rem;
-      margin: 1rem 0;
-      font-style: italic;
-      color: #666;
-    }
-
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #e5e7eb;
-      font-size: 0.9rem;
-    }
-
-    .icon-links {
-      display: flex;
-      gap: 16px;
-      align-self: flex-start;
-    }
-
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
-
-    ul {
-      margin: 1rem 0;
-      padding-left: 1.5rem;
-    }
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-
-    a {
-      color: #0066cc;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .under-construction {
-      font-style: italic;
-      color: #a00;
-      margin: 1.5rem 0;
-      padding: 1rem;
-      background-color: #fee;
-      border-radius: 4px;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <!-- Header and Navigation -->
   <header>
     <div class="header-top">
       <div>
         <h1>Sanay Tralshawala</h1>
         <div class="education-info">
           <div>
-            <div class="degree">M.S. Artificial Intelligence Engineering - Mechanical Engineering</div>
-            <div class="school">Carnegie Mellon University - December 2026</div>
+            <span class="degree">M.S. Artificial Intelligence Engineering</span>
+            <span class="school"> · Carnegie Mellon University</span>
           </div>
-          <!--
-          <div>
-            <div class="degree">B.S. Mechanical Engineering</div>
-            <div class="school">Rensselaer Polytechnic Institute - May 2025</div>
-          </div>
-        -->
         </div>
       </div>
       <div class="icon-links">
-        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank" aria-label="LinkedIn">
           <img class="icon" src="linkedin.svg" alt="LinkedIn">
         </a>
-        <a href="mailto:sanaytralshawala@gmail.com">
+        <a href="mailto:sanaytralshawala@gmail.com" aria-label="Email">
           <img class="icon" src="mail.svg" alt="Email">
         </a>
       </div>
     </div>
 
     <nav>
+      <button class="nav-toggle" aria-label="Toggle navigation" onclick="document.querySelector('nav ul').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
       <ul>
-        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html" class="active">Home</a></li>
         <li><a href="about.html">About Me</a></li>
         <li><a href="experiences.html">Experiences</a></li>
         <li><a href="projects.html">Projects</a></li>
@@ -186,32 +46,55 @@
     </nav>
   </header>
 
-  <main>
-    <!-- Home Section -->
-    <section>
-      <h2>Home</h2>
-      <!--
-      <div class="placeholder">
-        [YOUR BRIEF INTRODUCTION HERE - A welcoming message about yourself and your expertise]
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-inner">
+      <img src="profile-image.jpeg" alt="Sanay Tralshawala" class="hero-photo">
+      <h2>Hi, I'm Sanay</h2>
+      <p class="tagline">AI &amp; Robotics Researcher at Carnegie Mellon University, focused on Spatial AI, computer vision, and autonomous systems.</p>
+      <div class="hero-cta">
+        <a href="about.html" class="btn-primary">About Me</a>
+        <a href="Resume Tralshawala, Sanay_portfolio.pdf" class="btn-outline" target="_blank">View Resume</a>
       </div>
-    -->
+    </div>
+  </div>
 
-      <h3>Featured Sections</h3>
-      <ul>
-        <li><a href="about.html">About Me</a> - Learn more about my background and interests</li>
-        <li><a href="experiences.html">Experiences</a> - View my recent work and accomplishments</li>
-        <li><a href="projects.html">Projects</a> - Explore detailed case studies of my projects</li>
-        <li><a href="resume.html">Resume</a> - Download my professional resume</li>
-      </ul>
-
-      <div class="under-construction">
-        🚧 Site Under Construction - More detailed project case studies and documentation coming soon!
+  <main>
+    <section>
+      <h2>Explore</h2>
+      <div class="featured-grid">
+        <a href="about.html" class="featured-card">
+          <span class="card-icon">👤</span>
+          <h3>About Me</h3>
+          <p>My background, research interests, and what drives me.</p>
+        </a>
+        <a href="experiences.html" class="featured-card">
+          <span class="card-icon">💼</span>
+          <h3>Experiences</h3>
+          <p>Research, internships, and professional work.</p>
+        </a>
+        <a href="projects.html" class="featured-card">
+          <span class="card-icon">🔬</span>
+          <h3>Projects</h3>
+          <p>Technical projects and case studies.</p>
+        </a>
+        <a href="resume.html" class="featured-card">
+          <span class="card-icon">📄</span>
+          <h3>Resume</h3>
+          <p>Download or preview my professional resume.</p>
+        </a>
       </div>
     </section>
   </main>
 
   <footer>
-    Sanay Tralshawala
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="mailto:sanaytralshawala@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">LinkedIn</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Sanay Tralshawala</div>
+    </div>
   </footer>
 </body>
 </html>
