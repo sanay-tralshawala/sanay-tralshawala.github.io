@@ -51,12 +51,8 @@
 
       <div class="experience-header">
         <h2>Power Demand Prediction Based on Weather Data</h2>
-        <div class="experience-meta">Jan – May 2025 · Carnegie Mellon University · Machine Learning Engineering</div>
+        <div class="experience-meta">Rensselaer Polytechnic Institute · Machine Learning Engineering</div>
       </div>
-
-      <!-- PLACEHOLDER: RNN regression plot or feature correlation chart -->
-      <img src="[PLACEHOLDER: rnn-regression.png]" alt="RNN predicted vs actual power load" class="experience-image">
-
       <h3>Overview</h3>
       <p>
         Accurate power demand forecasting is critical for grid stability — particularly as renewable energy sources with variable output come online. Grid operators need to know how much reserve capacity to hold, when to import power from neighboring regions, and how to plan generation schedules around weather extremes.
@@ -64,20 +60,24 @@
       <p>
         This project builds a suite of machine learning models to predict hourly electricity load in the <strong>New York Capital Region (NYISO Zone F)</strong> from four weather features: temperature, relative humidity, surface pressure, and wind speed. Nine years of hourly data (82,104 records) were sourced from NASA POWER and NYISO historical archives.
       </p>
+      <!--
       <p>
         Code: <a href="https://github.com/sanay-tralshawala/MANE-4962-MLE/tree/main/Load_Prediction_Project" target="_blank">github.com/sanay-tralshawala/MANE-4962-MLE</a>
       </p>
+    -->
 
       <h3>Data & Feature Engineering</h3>
       <p>
         Temperature proved to be the dominant predictor — visually, the load-vs-temperature scatter shows a U-shaped curve, with peaks at both summer highs (air conditioning demand) and winter lows (lighting, heating), and a trough in the mild 0–20°C range. Wind speed showed an inverse relationship with load; relative humidity and surface pressure contributed more subtly.
       </p>
+
+      <img src="Projects/Power_demand/load_scatter.png" alt="Load vs weather feature scatter plots" class="experience-image">
       <p>
         Seasonal tags (Winter, Spring, Summer, Fall) were applied by month for interpretability. K-means clustering (k=4, selected by silhouette score and elbow analysis) was also used to group data by intrinsic weather similarity rather than calendar date, producing clusters that roughly — but not precisely — align with seasons.
       </p>
 
       <!-- PLACEHOLDER: feature scatter plots or pairplot by season -->
-      <img src="[PLACEHOLDER: feature-scatterplots.png]" alt="Load vs weather feature scatter plots" class="experience-image">
+      
 
       <h3>Models</h3>
       <p>
@@ -86,15 +86,23 @@
       <p>
         <strong>Linear Regression</strong> served as the initial benchmark. The full-dataset model achieved R² = 0.17 — essentially flat relative to the data's variance. Seasonal models improved somewhat (Summer: R² = 0.64) but were unreliable in colder months where heating switches to gas, breaking the electricity-weather relationship. The fundamental problem is that power demand is nonlinear in weather.
       </p>
+      <img src="Projects/Power_demand/clustered_lin.png" alt="Predicted Load vs actual load scatter plot" class="experience-image">
+      <!-- <img src="Projects/Power_demand/linear_regression_4_features.png" alt="Predicted Load vs actual load scatter plot" class="experience-image"> -->
+
+
       <p>
         <strong>Random Forest</strong> captured that nonlinearity much better. The best hyperparameter-tuned model (800 estimators, sqrt max features) reached R² = 0.65 on the full dataset. K-means clustered sub-models reached R² up to 0.74 on individual clusters, with visually tighter regression plots. Feature importance ranked temperature at 62%, with relative humidity (15%), wind speed (12%), and pressure (11%) following. Despite improvement, Random Forest still missed the cyclic temporal structure in the data.
       </p>
+      <img src="Projects/Power_demand/Random_Forest_Reg.png" alt="Predicted Load vs actual load scatter plot" class="experience-image">
+<img src="Projects/Power_demand/clustered_rf.png" alt="Predicted Load vs actual load scatter plot" class="experience-image">
+
+
       <p>
         <strong>LSTM RNN</strong> was the strongest approach. Using a 24-hour sliding window — the past 24 hours of weather predicts the load at hour 24 — the model exploits daily and seasonal periodicity directly. After hyperparameter tuning (3 layers of 50 LSTM units, 15 epochs), the model achieved <strong>R² = 0.87</strong> and MSE = 1,436,504 MW², with a notably tighter prediction band than the forest models. The main remaining issue is a downward bias in predictions, suggesting the loss function could be modified to penalize under-prediction more heavily.
       </p>
-
+      <img src="Projects/Power_demand/RNN_full.png" alt="Predicted Load vs actual load scatter plot" class="experience-image">
       <!-- PLACEHOLDER: Random Forest vs RNN regression comparison -->
-      <img src="[PLACEHOLDER: model-comparison.png]" alt="Random Forest and RNN regression results compared" class="experience-image">
+      
 
       <h3>Results Summary</h3>
       <p>
@@ -108,7 +116,9 @@
 
       <h3>Skills & Tools</h3>
       <p>
-        Python · TensorFlow / Keras · LSTM · RNN · Random Forest · Linear Regression · K-Means Clustering · GridSearchCV · Feature Engineering · Time Series Analysis · MinMaxScaler · NASA POWER · NYISO · Scikit-learn · Pandas · Matplotlib
+        Python · TensorFlow / Keras · LSTM · RNN · Random Forest · Linear Regression ·
+         K-Means Clustering · Feature Engineering · Time Series Analysis ·
+          NASA POWER · NYISO · Scikit-learn · Pandas · Matplotlib
       </p>
 
       <a href="projects.html" class="back-link">← Back to Projects</a>
