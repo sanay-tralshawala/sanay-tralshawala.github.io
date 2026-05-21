@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Airport Surface Safety – Sanay Tralshawala</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <div class="header-top">
+      <div>
+        <h1>Sanay Tralshawala</h1>
+        <div class="education-info">
+          <div>
+            <span class="degree">M.S. Artificial Intelligence Engineering - Mechanical Engineering</span>
+            <span class="school"> · Carnegie Mellon University</span>
+          </div>
+        </div>
+      </div>
+      <div class="icon-links">
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank" aria-label="LinkedIn">
+          <img class="icon" src="linkedin.svg" alt="LinkedIn">
+        </a>
+        <a href="mailto:sanaytralshawala@gmail.com" aria-label="Email">
+          <img class="icon" src="mail.svg" alt="Email">
+        </a>
+      </div>
+    </div>
+    <nav>
+      <button class="nav-toggle" aria-label="Toggle navigation"
+        onclick="document.querySelector('nav ul').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <a href="projects.html" class="back-link">← Back to Projects</a>
+
+      <div class="experience-header">
+        <h2>Trajectory Prediction as Forward Reachability for Airport Surface Safety</h2>
+        <div class="experience-meta">Carnegie Mellon University · Embodied Artificial Intelligence Safety</div>
+      </div>
+
+      <!-- PLACEHOLDER: qualitative FRS corridor figure (e.g. Fig. 3 from paper — runway/taxiway reachable envelopes) -->
+      <img src="[PLACEHOLDER: frs-corridors.png]" alt="Reachable set corridors on runway and taxiway scenarios" class="experience-image">
+
+      <h3>Overview</h3>
+      <p>
+        Runway incursions — unauthorized aircraft presence on an active runway — have caused near-collisions at major airports and remain an acute safety problem as global air traffic grows. Current alerting systems like the FAA's ASDEX are largely <strong>reactive</strong>: they detect conflicts from present motion rather than anticipating where aircraft will be in the next several seconds.
+      </p>
+      <p>
+        This project bridges trajectory forecasting and formal safety analysis by adapting <strong>calibrated forward reachable set (FRS) estimation</strong> to airport surface operations. Rather than asking "where is the aircraft now?", the system asks "where could it plausibly be in the next T seconds?" — and answers with a statistically calibrated, kinematically feasible reachable envelope. Pairwise conflict risk is then scored as the weighted spatial overlap of two aircraft's reachable sets across the prediction horizon.
+      </p>
+      <p>
+        Applied to a real-world JFK runway incursion sequence, the proposed method issues an alert approximately <strong>5 seconds before the annotated incursion event</strong> — earlier and more informatively than purely kinematic or simple extrapolation baselines.
+      </p>
+
+      <h3>My Contributions</h3>
+      <p>
+        This was a three-person team project. My primary contributions were: assisting with setup of the Amelia-TF trajectory forecasting pipeline and generating a mock dataset for initial integration testing; performing the <strong>conformal prediction analysis of the feasibility constraints</strong> for statistical coverage guarantees; and integrating those results into the broader pipeline and ensuring the report structure and technical arguments were sound.
+      </p>
+
+      <h3>The Core Problem: Reactive vs. Predictive Conflict Detection</h3>
+      <p>
+        Airport surface safety systems typically operate on two extremes. Rule-based surveillance detects violations only once they have occurred, providing no reasoning about future occupancy. Learned trajectory forecasters — including the Amelia-TF model used here — predict plausible future motion from historical data, but they provide no coverage guarantees and may produce kinematically impossible predictions for aircraft.
+      </p>
+      <p>
+        The forward reachable set framework sits between these extremes: it characterizes the full envelope of states an aircraft <em>can reach</em> within a given time horizon given its dynamics and control limits. The challenge specific to airport surface operations is that aircraft have very different dynamics from road vehicles — limited turning rates at speed, constrained taxiway topology, and safety-critical separation requirements measured in tens of meters, not lanes.
+      </p>
+
+      <!-- PLACEHOLDER: diagram of the pipeline (Amelia-TF → kinematic weighting → conformal calibration → risk score) -->
+      <img src="[PLACEHOLDER: pipeline-diagram.png]" alt="FRS construction pipeline: forecasting, feasibility weighting, conformal calibration, conflict scoring" class="experience-image">
+
+      <h3>Approach</h3>
+      <p>
+        The method has three stages, each addressing a distinct limitation of prior work:
+      </p>
+      <p>
+        <strong>1. Forecast-guided reachable sets.</strong> Amelia-TF generates N multi-modal trajectory samples conditioned on each aircraft's recent history. These samples ground the FRS in realistic airport-surface behavior — concentrating the reachable envelope on operationally plausible futures rather than every physically possible heading and speed combination.
+      </p>
+      <p>
+        <strong>2. Kinematic feasibility weighting.</strong> Each forecast sample is assigned a weight based on how well it adheres to aircraft-specific kinematic constraints: a unicycle model with speed-dependent turn-rate limits derived from Boeing 737 documentation. Rather than hard-rejecting implausible samples, soft weighting (controlled by a sharpness parameter λ) preserves modes with minor violations while penalizing larger ones. An ablation study over λ ∈ {0.001 … 1000} identified a knee at λ = 0.1 where the reachable set tightened significantly without loss of coverage.
+      </p>
+      <p>
+        <strong>3. Conformal calibration.</strong> The forecast-weighted FRS is expanded by a scalar radius q̂ calibrated on held-out JFK surface-movement data to achieve a target empirical coverage level. At 80% target coverage, calibration produced a compact 54 m expansion radius — tight enough to be informative while retaining most true future positions inside the set. This calibration step is where statistical guarantees enter: the conformal expansion converts a heuristic forecast envelope into a set with a formal coverage claim, directly extending prior work on conformal prediction for reachability analysis.
+      </p>
+
+      <h3>Conflict Risk Scoring</h3>
+      <p>
+        For a pair of aircraft (a, b), pairwise conflict risk at time t is the total weighted mass of forecast-mode pairs whose calibrated reachable sets come within a minimum separation distance ε at any prediction step. A risk score of 0 means no weighted mode pair violates separation; a score of 1 means all weighted mass is in conflict. Evaluating this score over successive time steps produces a risk trace that can be thresholded to issue alerts.
+      </p>
+
+      <!-- PLACEHOLDER: Fig. 4 from paper — pairwise risk traces for unicycle, kinematic-only, and proposed method -->
+      <img src="[PLACEHOLDER: risk-traces.png]" alt="Pairwise conflict risk traces: unicycle vs kinematic-only vs proposed FRS" class="experience-image">
+
+      <h3>Results</h3>
+      <p>
+        The evaluation scenario is a documented JFK runway incursion: one aircraft taxiing across the runway while another begins a takeoff roll. Three methods are compared:
+      </p>
+      <p>
+        The <strong>kinematic-only baseline</strong> considers all physically possible futures regardless of behavioral plausibility, producing a saturated risk trace (ρ ≈ 1.0) throughout — too conservative to be useful for alerting.
+      </p>
+      <p>
+        The <strong>unicycle extrapolation baseline</strong> is too narrow, peaking at ρ ≈ 0.4 near the event and never crossing the alert threshold of 0.5 — too optimistic to catch the incursion.
+      </p>
+      <p>
+        The <strong>proposed calibrated FRS</strong> crosses the alert threshold approximately <strong>5 seconds before the annotated incursion frame</strong>, producing a risk signal that rises sharply and informatively as the aircraft converge. It occupies the middle ground between over-conservative kinematic reachability and under-conservative simple extrapolation.
+      </p>
+
+      <!-- PLACEHOLDER: Fig. 1 from paper — coverage–tightness trade-off across λ sweep -->
+      <img src="[PLACEHOLDER: coverage-tightness.png]" alt="Coverage-tightness trade-off across kinematic sharpness parameter λ" class="experience-image">
+
+      <h3>Key Takeaways</h3>
+      <p>
+        The central lesson of this project is that trajectory forecasters and formal safety methods are not in opposition — they are complementary. Forecasters supply behavioral realism; conformal calibration supplies statistical coverage guarantees; kinematic weighting supplies physical plausibility. None of these alone produces a useful conflict detection signal on airport surfaces, but their combination does.
+      </p>
+      <p>
+        Important limitations remain: the coverage guarantee assumes calibration and deployment data come from similar operating conditions, meaning the system would need airport-specific recalibration and out-of-distribution fallback before real deployment. The method also does not yet generalize across airports with different runway and taxiway geometries — extending it is a natural next step, as is adapting q̂ online as new ground-truth data becomes available during operations.
+      </p>
+
+      <h3>Skills & Tools</h3>
+      <p>
+        Python · Conformal Prediction · Forward Reachable Sets · Trajectory Forecasting · Amelia-TF · Kinematic Modeling · Unicycle Dynamics · Statistical Coverage Guarantees · Airport Surface Safety · Ablation Studies · Risk Scoring · PyTorch
+      </p>
+
+      <a href="projects.html" class="back-link">← Back to Projects</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="mailto:sanaytralshawala@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">LinkedIn</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Sanay Tralshawala</div>
+    </div>
+  </footer>
+</body>
+</html>
