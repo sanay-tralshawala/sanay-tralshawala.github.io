@@ -1,1 +1,1 @@
-# sanay-tralshawala.github.io
+# sanaytralshawala.github.io

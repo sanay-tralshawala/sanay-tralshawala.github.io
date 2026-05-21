@@ -60,26 +60,53 @@
 
       <h3>Overview</h3>
       <p>
-        Runway incursions — unauthorized aircraft presence on an active runway — have caused near-collisions at major airports and remain an acute safety problem as global air traffic grows. Current alerting systems like the FAA's ASDEX are largely <strong>reactive</strong>: they detect conflicts from present motion rather than anticipating where aircraft will be in the next several seconds.
+        Runway incursions, unauthorized aircraft presence on an active 
+        runway, have caused near-collisions at major airports and remain 
+        an acute safety problem as global air traffic grows. Current 
+        alerting systems like the FAA's ASDEX are largely 
+        <strong>reactive</strong>: they detect conflicts from 
+        present motion rather than anticipating where aircraft will be 
+        in the next several seconds.
       </p>
       <p>
-        This project bridges trajectory forecasting and formal safety analysis by adapting <strong>calibrated forward reachable set (FRS) estimation</strong> to airport surface operations. Rather than asking "where is the aircraft now?", the system asks "where could it plausibly be in the next T seconds?" — and answers with a statistically calibrated, kinematically feasible reachable envelope. Pairwise conflict risk is then scored as the weighted spatial overlap of two aircraft's reachable sets across the prediction horizon.
+        This project bridges trajectory forecasting and formal safety 
+        analysis by adapting <strong>calibrated forward reachable set 
+        (FRS) estimation</strong> to airport surface operations. 
+        Rather than asking "where is the aircraft now?", the system asks
+        "where could it plausibly be in the next T seconds?" and 
+        answers with a statistically calibrated, kinematically feasible 
+        reachable envelope. Pairwise conflict risk is then scored as the 
+        weighted spatial overlap of two aircraft's reachable sets across 
+        the prediction horizon.
       </p>
       <p>
-        Applied to a real-world JFK runway incursion sequence, the proposed method issues an alert approximately <strong>5 seconds before the annotated incursion event</strong> — earlier and more informatively than purely kinematic or simple extrapolation baselines.
+        Applied to a real-world JFK runway incursion sequence, the proposed 
+        method issues an alert approximately <strong>5 seconds before the 
+          annotated incursion event</strong> earlier and more informatively 
+          than purely kinematic or simple extrapolation baselines.
       </p>
 
-      <h3>My Contributions</h3>
-      <p>
-        This was a three-person team project. My primary contributions were: assisting with setup of the Amelia-TF trajectory forecasting pipeline and generating a mock dataset for initial integration testing; performing the <strong>conformal prediction analysis of the feasibility constraints</strong> for statistical coverage guarantees; and integrating those results into the broader pipeline and ensuring the report structure and technical arguments were sound.
-      </p>
+      
 
-      <h3>The Core Problem: Reactive vs. Predictive Conflict Detection</h3>
+      <h3>The Core Problem & Research Questions: Reactive vs. Predictive Conflict Detection</h3>
       <p>
-        Airport surface safety systems typically operate on two extremes. Rule-based surveillance detects violations only once they have occurred, providing no reasoning about future occupancy. Learned trajectory forecasters — including the Amelia-TF model used here — predict plausible future motion from historical data, but they provide no coverage guarantees and may produce kinematically impossible predictions for aircraft.
+        Airport surface safety systems typically operate on two extremes. 
+        Rule-based surveillance detects violations only once they have 
+        occurred, providing no reasoning about future occupancy. Learned 
+        trajectory forecasters - including the Amelia-TF model used in 
+        this project - predict plausible future motion from historical data,
+        but they provide no coverage guarantees and may produce kinematically 
+        impossible predictions for aircraft.
       </p>
       <p>
-        The forward reachable set framework sits between these extremes: it characterizes the full envelope of states an aircraft <em>can reach</em> within a given time horizon given its dynamics and control limits. The challenge specific to airport surface operations is that aircraft have very different dynamics from road vehicles — limited turning rates at speed, constrained taxiway topology, and safety-critical separation requirements measured in tens of meters, not lanes.
+        The forward reachable set framework sits between these extremes: it 
+        characterizes the full envelope of states an aircraft <em>can reach
+        </em> within a given time horizon given its dynamics and control 
+        limits. The challenge specific to airport surface operations is that 
+        aircraft have very different dynamics from road vehicles — limited 
+        turning rates at speed, constrained taxiway topology, and 
+        safety-critical separation requirements measured in tens of meters,
+         not lanes.
       </p>
 
       <!-- PLACEHOLDER: diagram of the pipeline (Amelia-TF → kinematic weighting → conformal calibration → risk score) -->
@@ -130,6 +157,11 @@
       </p>
       <p>
         Important limitations remain: the coverage guarantee assumes calibration and deployment data come from similar operating conditions, meaning the system would need airport-specific recalibration and out-of-distribution fallback before real deployment. The method also does not yet generalize across airports with different runway and taxiway geometries — extending it is a natural next step, as is adapting q̂ online as new ground-truth data becomes available during operations.
+      </p>
+
+      <h3>My Contributions</h3>
+      <p>
+        This was a three-person team project. My primary contributions were: assisting with setup of the Amelia-TF trajectory forecasting pipeline and generating a mock dataset for initial integration testing; performing the <strong>conformal prediction analysis of the feasibility constraints</strong> for statistical coverage guarantees; and integrating those results into the broader pipeline and ensuring the report structure and technical arguments were sound.
       </p>
 
       <h3>Skills & Tools</h3>
