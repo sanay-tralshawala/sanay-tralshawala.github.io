@@ -2,73 +2,507 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Wing Spar Design Optimization – Sanay Tralshawala</title>
+  <title>Wing Spar Optimization - Sanay Tralshawala</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../../styles.css">
+  <style>
+    .phase-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin: 2rem 0 1.5rem;
+      flex-wrap: wrap;
+    }
+    .phase-tab {
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      border: 1.5px solid #2563eb;
+      background: transparent;
+      color: #2563eb;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.18s, color 0.18s;
+    }
+    .phase-tab.active,
+    .phase-tab:hover {
+      background: #2563eb;
+      color: #fff;
+    }
+    .phase-section { display: none; }
+    .phase-section.active { display: block; }
+    
+    /* Responsive images */
+    .experience-image {
+      max-width: 700px;
+      width: 100%;
+      height: auto;
+      display: block;
+      margin: 1.25rem auto;
+      border-radius: 8px;
+    }
+    
+    /* Responsive tables */
+    .experience-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 1.25rem 0;
+    }
+    .experience-table th {
+      text-align: left;
+      padding: 0.6rem 0.9rem;
+      background: #f3f4f6;
+      font-weight: 600;
+      border-bottom: 2px solid #e5e7eb;
+    }
+    .experience-table td {
+      padding: 0.6rem 0.9rem;
+      border-bottom: 1px solid #e5e7eb;
+      vertical-align: top;
+    }
+    .experience-table tr:last-child td { border-bottom: none; }
+    
+    /* Table wrapper for mobile overflow */
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    @media (max-width: 768px) {
+      .experience-image {
+        margin: 1rem 0;
+      }
+      
+      .experience-table {
+        font-size: 0.8rem;
+      }
+      .experience-table th,
+      .experience-table td {
+        padding: 0.4rem 0.6rem;
+      }
+      
+      .phase-tab {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.8rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .experience-image {
+        margin: 0.75rem 0;
+        border-radius: 6px;
+      }
+      
+      .experience-table {
+        font-size: 0.7rem;
+      }
+      .experience-table th,
+      .experience-table td {
+        padding: 0.3rem 0.5rem;
+      }
+      
+      .phase-tab {
+        padding: 0.35rem 0.8rem;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
-  <header>
-    <div class="header-top">
-      <div>
-        <h1>Sanay Tralshawala</h1>
-        <div class="education-info">
-          <div>
-            <span class="degree">M.S. Artificial Intelligence Engineering - Mechanical Engineering</span>
-            <span class="school"> · Carnegie Mellon University</span>
-          </div>
+
+<header>
+  <div class="header-top">
+    <div>
+      <h1>Sanay Tralshawala</h1>
+      <div class="education-info">
+        <div>
+          <span class="degree">M.S. Artificial Intelligence Engineering</span>
+          <span class="school"> · Carnegie Mellon University</span>
         </div>
       </div>
-      <div class="icon-links">
-        <a href="https://www.linkedin.com/in/sanayt/" target="_blank" aria-label="LinkedIn">
-          <img class="icon" src="../../linkedin.svg" alt="LinkedIn">
-        </a>
-        <a href="mailto:sanaytralshawala@gmail.com" aria-label="Email">
-          <img class="icon" src="../../mail.svg" alt="Email">
-        </a>
-      </div>
     </div>
-    <nav>
-      <button class="nav-toggle" aria-label="Toggle navigation"
-        onclick="document.querySelector('nav ul').classList.toggle('open')">
-        <span></span><span></span><span></span>
-      </button>
-      <ul>
-        <li><a href="../../index.html">Home</a></li>
+    <div class="icon-links">
+      <a href="https://www.linkedin.com/in/sanayt/" target="_blank" aria-label="LinkedIn">
+        <img class="icon" src="../../linkedin.svg" alt="LinkedIn">
+      </a>
+      <a href="mailto:sanaytralshawala@gmail.com" aria-label="Email">
+        <img class="icon" src="../../mail.svg" alt="Email">
+      </a>
+    </div>
+  </div>
+  <nav>
+    <button class="nav-toggle" aria-label="Toggle navigation"
+      onclick="document.querySelector('nav ul').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul>
+      <li><a href="../../index.html">Home</a></li>
         <li><a href="../../about.html">About Me</a></li>
         <li><a href="../../experiences.html">Experiences</a></li>
         <li><a href="../../projects.html" class="active">Projects</a></li>
         <li><a href="../../resume.html">Resume</a></li>
-      </ul>
-    </nav>
-  </header>
+    </ul>
+  </nav>
+</header>
 
-  <main>
-    <section>
-      <a href="../../projects.html" class="back-link">← Back to Projects</a>
+<main>
+  <section>
+    <a href="../../projects.html" class="back-link">← Back to Projects</a>
 
-      <div class="experience-header">
-        <h2>Wing Spar Design Optimization</h2>
-        <div class="experience-meta">Rensselaer Polytechnic Institute · Numerical Design Optimization</div>
-      </div>
-
-
-
-      <a href="../../projects.html" class="back-link">← Back to Projects</a>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-links">
-        <a href="mailto:sanaytralshawala@gmail.com">Email</a>
-        <a href="https://www.linkedin.com/in/sanayt/" target="_blank">LinkedIn</a>
-      </div>
-      <div class="footer-copy">&copy; 2026 Sanay Tralshawala</div>
+    <div class="experience-header">
+      <h2>Wing Spar Optimization for Aircraft Design</h2>
+      <div class="experience-meta">Rensselaer Polytechnic Institute · Numerical Design Optimization</div>
     </div>
-  </footer>
+
+    <!-- Phase Tabs -->
+    <div class="phase-tabs">
+      <button class="phase-tab active" onclick="showPhase('p2', this)">Deterministic</button>
+      <button class="phase-tab" onclick="showPhase('p4', this)">Under Uncertainty</button>
+      <button class="phase-tab" onclick="showPhase('compare', this)">Comparison</button>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ PROJECT 2 -->
+    <div id="p2" class="phase-section active">
+
+      <h3>Overview</h3>
+      <p>
+        This project minimized the structural mass of a UAV wing semi-spar - 
+        the primary load-bearing
+        element of the wing - subject to stress, geometric, and thickness 
+        constraints. The spar spans 7.5 m and was designed for a 500 kg UAV 
+        executing a 2.5 g maneuver. A carbon-fiber composite was modeled with 
+        density 1600 kg/m³, Young's modulus 70 GPa, and ultimate strength 600 MPa.
+      </p>
+
+      <img src="p2f1.png" alt="Nominal spar geometry showing constant outer radius 0.05 m and inner radius 0.04635 m along the 7.5 m span" class="experience-image">
+
+
+      <h3>Analysis Model</h3>
+      <p>
+        The spar was treated as a cantilever beam under linearly distributed aerodynamic loading using
+        Euler-Bernoulli beam theory, discretized with Hermite-cubic finite elements. The governing 
+        partial differential equation and boundary conditions are:
+      </p>
+      <p style="background: #f3f4f6; border-left: 3px solid #2563eb; padding: 0.7rem 1.1rem; font-family: Georgia, serif; margin: 0.75rem 0;">
+        d²/dx²(EI<sub>yy</sub> · d²w/dx²) = q &nbsp;&nbsp; ∀x ∈ [0, L]<br>
+        w(0) = 0, &nbsp; w′(0) = 0, &nbsp; w″(L) = 0, &nbsp; w‴(L) = 0
+      </p>
+      <p>
+        Normal stress at each cross-section was derived from curvature:
+      </p>
+      <p style="background: #f3f4f6; border-left: 3px solid #2563eb; padding: 0.7rem 1.1rem; font-family: Georgia, serif; margin: 0.75rem 0;">
+        σ<sub>xx</sub>(x) = −z<sub>max</sub> · E · d²w/dx²
+      </p>
+      <p>
+        The cross-section is a circular annulus; the second moment of area is
+        I<sub>yy</sub> = (π/4)(r<sub>o</sub>⁴ − r<sub>i</sub>⁴).
+        Spar volume (and hence mass) was computed element-by-element using a tapered-cylinder formula.
+      </p>
+
+      <h3>Geometry Parameterization &amp; Design Variables</h3>
+      <p>
+        The design variable vector alternates inner and outer radii at each of the N+1 nodes:
+      </p>
+      <p style="background: #f3f4f6; border-left: 3px solid #2563eb; padding: 0.7rem 1.1rem; font-family: Georgia, serif; margin: 0.75rem 0;">
+        r = [r<sub>i,1</sub>, r<sub>o,1</sub>, r<sub>i,2</sub>, r<sub>o,2</sub>, … , r<sub>i,N+1</sub>, r<sub>o,N+1</sub>]<sup>T</sup>
+      </p>
+      <p>
+        This gave 52 design variables for N = 25 elements (26 node pairs).
+      </p>
+
+      <h3>Optimization Setup</h3>
+      <p>
+        MATLAB's <code>fmincon</code> with the SQP (Sequential Quadratic Programming) algorithm was used.
+        Constraints enforced:
+      </p>
+      <ul>
+        <li>Wall thickness: r<sub>o</sub> − r<sub>i</sub> ≥ 2.5 mm</li>
+        <li>Outer radius: r<sub>o</sub> ≤ 50 mm; inner radius: r<sub>i</sub> ≥ 10 mm</li>
+        <li>Stress: σ<sub>i</sub> ≤ σ<sub>ultimate</sub> at every node</li>
+      </ul>
+      <p>
+        Gradients of both the objective (mass) and nonlinear constraints (stress) were computed via the
+        <strong>complex-step method</strong> at step size h = 10⁻⁶⁰, supplying exact analytic-quality
+        derivatives to the solver.
+      </p>
+
+      <h3>Mesh Convergence Study</h3>
+      <p>
+        A fixed tapered design (r<sub>o</sub>: 0.05→0.03 m, r<sub>i</sub>: 0.03→0.02 m) was analyzed across
+        N = 1…100. The normalized tip stress converged to within ±0.01% of its asymptotic value at
+        N = 25 (normalized error ≈ −1.76×10⁻⁵), confirming sufficient accuracy at manageable
+        computational cost.
+      </p>
+
+      
+      <img src="p2f2.png" alt="Mesh convergence plot of normalized tip stress vs. number of finite elements, converging within ±0.01% at N=25" class="experience-image">
+      
+
+      <h3>Results &amp; Discussion</h3>
+      <p>
+        The optimized spar tapers aggressively from root to tip, with both radii decreasing smoothly
+        until the geometry hits its minimum allowable values at approximately 5 m. Beyond that point,
+        the spar holds at minimum size — stress has dropped well below the ultimate limit and further
+        material removal is constrained by geometry bounds rather than stress.
+      </p>
+
+      <img src="p2f3.png" alt="Optimized spar geometry showing inner and outer radius tapering from root to tip" class="experience-image">
+
+
+
+      <img src="p2f4.png" alt="Stress along the wing spar, saturating at ultimate strength from root to ~5 m then dropping" class="experience-image">
+      
+
+      <p>
+        <strong>Stress behavior:</strong> The spar operates at exactly σ<sub>ultimate</sub> from root to ~5 m,
+        then drops sharply toward zero - a hallmark of a fully stressed, material-optimal design. The optimizer
+        exploits every available margin near the root where bending moments are largest.
+      </p>
+      <p>
+        The vertical tip displacement reached 7.61 m for a 7.5 m spar - nearly 100% of the span length.
+        While mathematically consistent with the small-deflection Euler-Bernoulli model, this is physically
+        unrealistic for a carbon-fiber composite and signals a key limitation: the absence of a deflection
+        constraint allows the optimizer to over-thin the spar. The first-order optimality converged to 10⁻¹⁰
+        and feasibility to 10⁻⁹, confirming the solver found an appropriate local minimum.
+      </p>
+
+
+      <img src="p2f5.png" alt="Angular displacement along the spar reaching ~2 radians at the tip" class="experience-image">
+
+
+      <img src="p2f6.png" alt="Vertical displacement along the spar reaching 7.61 m at the 7.5 m tip — nearly equal to the spar length" class="experience-image">
+
+
+      <h3>Skills &amp; Tools</h3>
+      <p>MATLAB · fmincon / SQP · Finite Element Method · Euler-Bernoulli Beam Theory · Hermite-Cubic Shape Functions · Complex-Step Differentiation · Gradient-Based Optimization · Mesh Convergence Analysis · Structural Mechanics</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ PROJECT 4 -->
+    <div id="p4" class="phase-section">
+
+      <h3>Overview</h3>
+      <p>
+        Building directly on deterministic work, this analysis introduced <strong>loading uncertainty</strong> into the
+        optimization. Real aerodynamic loads are never perfectly known - gusts, measurement error, and
+        flight variability all introduce randomness. The force distribution was modeled as the nominal load
+        plus a stochastic perturbation, and the stress constraint was tightened to require that
+        <em>mean + 6 standard deviations of stress</em> remain below the yield strength - a six-sigma design
+        criterion ensuring robustness against extreme load realizations.
+      </p>
+
+      <img src="p4f1.png" alt="Nominal spar geometry for Project 4 with constant outer radius 0.05 m and inner radius 0.0415 m" class="experience-image">
+
+      <img src="p4f2.png" alt="Nominal stress along wing spar with mean, mean + 6 std, and mean - 6 std curves" class="experience-image">
+
+
+
+      <h3>Uncertainty Model</h3>
+      <p>
+        The loading uncertainty was expressed as a sum of cosine modes with Gaussian random coefficients:
+      </p>
+      <p style="background: #f3f4f6; border-left: 3px solid #2563eb; padding: 0.7rem 1.1rem; font-family: Georgia, serif; margin: 0.75rem 0;">
+        f(x, ξ) = f<sub>nom</sub>(x) + Σ<sub>n=1..4</sub> ξ<sub>n</sub> cos((2n−1)πx / 2L)<br>
+        ξ<sub>n</sub> ~ 𝒩(0, f<sub>nom</sub>(0) / 10n)
+      </p>
+      <p>
+        Each mode's standard deviation decreases with index n, so higher spatial-frequency perturbations
+        carry less energy. This gives a four-dimensional random input space (one ξ per mode).
+      </p>
+
+      <h3>Stochastic Collocation via Gauss-Hermite Quadrature</h3>
+      <p>
+        The mean and variance of stress were computed as weighted sums over quadrature points. For Gaussian
+        inputs, Gauss-Hermite quadrature is optimal. The kernel adjustment from the standard Hermite
+        form to a proper Gaussian PDF is:
+      </p>
+      <p style="background: #f3f4f6; border-left: 3px solid #2563eb; padding: 0.7rem 1.1rem; font-family: Georgia, serif; margin: 0.75rem 0;">
+        w<sup>(k)</sup> / √π → w<sup>(k)</sup> &nbsp;&nbsp; and &nbsp;&nbsp; √2σ · ξ<sup>(k)</sup> + μ → ξ<sup>(k)</sup>
+      </p>
+      <p>
+        With 4 stochastic dimensions and m quadrature points per dimension, the full tensor product
+        requires m⁴ stress evaluations per constraint call. A quadrature convergence study
+        (2–7 points) showed that 2 points yielded normalized errors on the order of 10⁻⁵ relative to
+        the yield stress - negligible compared to the MPa-scale stresses involved - so 2 points were
+        used throughout optimization to keep runtime tractable.
+      </p>
+
+      <img src="quad.png" alt="Quadrature convergence plot of normalized error in mean + 6 std stress vs. number of quadrature points, converging to ~10⁻⁵ at 2 points" class="experience-image">
+
+      <h3>Stress Constraint Under Uncertainty</h3>
+      <p>
+        The updated nonlinear constraint required that the mean stress plus six standard deviations
+        remain feasible everywhere along the spar:
+      </p>
+      <p style="background: #f3f4f6; border-left: 3px solid #2563eb; padding: 0.7rem 1.1rem; font-family: Georgia, serif; margin: 0.75rem 0;">
+        𝔼[σ(x, ξ)] + 6 √Var[σ(x, ξ)] ≤ σ<sub>yield</sub>
+      </p>
+      <p>
+        Standard deviation was recovered from the quadrature weights:
+        √(𝔼[σ²] − 𝔼[σ]²). Gradients of both the mean and variance with respect to design variables
+        were again computed via the complex-step method, enabling exact gradient supply to fmincon.
+      </p>
+
+      <h3>Results &amp; Discussion</h3>
+      <p>
+        The optimized shape under uncertainty has a larger cross-section near the root compared to
+        the deterministic design, the six-sigma buffer forces the spar to carry extra material as insurance against
+        load exceedances. The geometry tapers and reaches minimum bounds at around 6 m (vs. 5 m in
+        Project 2), consistent with the stress curve dropping off later.
+      </p>
+
+      <img src="p4f3.png" alt="Force distributions for 2 quadrature points showing stochastic perturbations straddling the nominal load" class="experience-image">
+
+      <img src="p4f4.png" alt="Optimized spar shape under uncertainty with inner and outer radii tapering toward minimum bounds at ~6 m" class="experience-image">
+
+      <img src="p4f5.png" alt="Optimal stress along wing spar with mean, mean + 6 std, and mean - 6 std; stress constraint active at root" class="experience-image">
+
+      <p>
+        <strong>Key improvement:</strong> The mean vertical tip deflection fell to 2.75 m and
+        the maximum angular displacement to ~0.7 rad — significantly more physical than the near-100%
+        span deflection seen without uncertainty. The uncertainty buffer effectively acts as an implicit
+        stiffness constraint, producing a more realistic structural design without requiring an explicit
+        deflection limit.
+      </p>
+      <p>
+        The six-sigma constraint creates a more feasible design at the cost of slightly reduced mass
+        optimality. The feasibility history converged to 10⁻¹² (vs. 10⁻⁹ in Project 2) and
+        first-order optimality to 10⁻⁵, confirming a well-converged local minimum.
+      </p>
+
+      <img src="p4f6.png" alt="Mean angular displacement along spar under optimal uncertainty conditions reaching ~0.7 rad at tip" class="experience-image">
+
+      <img src="p4f7.png" alt="Mean vertical displacement along spar reaching ~2.75 m at the tip — significantly more realistic than Project 2" class="experience-image">
+
+      <h3>Skills &amp; Tools</h3>
+      <p>MATLAB · fmincon / SQP · Stochastic Collocation · Gauss-Hermite Quadrature · Optimization Under Uncertainty · Six-Sigma Design · Complex-Step Differentiation · Finite Element Method · Probabilistic Structural Analysis</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════ COMPARISON -->
+    <div id="compare" class="phase-section">
+
+      <h3>Deterministic vs. Under Uncertainty: Side-by-Side</h3>
+      <p>
+        The uncertainty-based approach builds directly on the deterministic approach by layering loading uncertainty into an otherwise
+        identical optimization framework. The table below highlights how accounting for uncertainty
+        reshapes both the optimal design and its physical realism.
+      </p>
+
+      <div class="table-wrapper">
+      <table class="experience-table">
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Deterministic</th>
+            <th>Under Uncertainty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Nominal mass</strong></td>
+            <td>13.26 kg</td>
+            <td>29.32 kg</td>
+          </tr>
+          <tr>
+            <td><strong>Optimized mass</strong></td>
+            <td>4.91 kg</td>
+            <td>8.58 kg</td>
+          </tr>
+          <tr>
+            <td><strong>Mass reduction</strong></td>
+            <td>62.9%</td>
+            <td>70.7%</td>
+          </tr>
+          <tr>
+            <td><strong>Stress constraint</strong></td>
+            <td>σ ≤ σ<sub>ult</sub></td>
+            <td>𝔼[σ] + 6σ<sub>std</sub> ≤ σ<sub>yield</sub></td>
+          </tr>
+          <tr>
+            <td><strong>Tip vertical deflection</strong></td>
+            <td>7.61 m (≈ spar length — unrealistic)</td>
+            <td>2.75 m (more physical)</td>
+          </tr>
+          <tr>
+            <td><strong>Max angular displacement</strong></td>
+            <td>~2 rad</td>
+            <td>~0.7 rad</td>
+          </tr>
+          <tr>
+            <td><strong>Geometry reaches min bounds at</strong></td>
+            <td>~5 m</td>
+            <td>~6 m</td>
+          </tr>
+          <tr>
+            <td><strong>Feasibility at convergence</strong></td>
+            <td>10⁻⁹</td>
+            <td>10⁻¹²</td>
+          </tr>
+          <tr>
+            <td><strong>First-order optimality</strong></td>
+            <td>10⁻¹⁰</td>
+            <td>10⁻⁵</td>
+          </tr>
+          <tr>
+            <td><strong>Gradient method</strong></td>
+            <td>Complex step (h = 10⁻⁶⁰)</td>
+            <td>Complex step (h = 10⁻³⁰)</td>
+          </tr>
+          <tr>
+            <td><strong>Key limitation</strong></td>
+            <td>No deflection constraint; Euler-Bernoulli small-strain assumption violated</td>
+            <td>Same beam theory limits apply; tensor-product quadrature scales exponentially with dimensions</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+      <h3>Key Takeaways</h3>
+      <p>
+        <strong>Uncertainty as a natural stiffness constraint.</strong> Adding the six-sigma stress buffer
+        implicitly forced a stiffer, more realistic spar - no explicit deflection limit was needed to
+        achieve a physically reasonable tip displacement. This illustrates how robust optimization can
+        simultaneously improve reliability and physical plausibility.
+      </p>
+      <p>
+        <strong>Computational trade-off.</strong> The 4-D stochastic collocation with m = 2 quadrature
+        points per dimension requires 2⁴ = 16 stress evaluations per constraint call. Choosing 2
+        points (justified by the convergence study) keeps this tractable; using 7 points would require
+        7⁴ = 2401 evaluations, a 150× increase for negligible accuracy gain at these stress magnitudes.
+      </p>
+      <p>
+        <strong>Model limitations &amp; future work.</strong> Both designs inherit the Euler-Bernoulli
+        assumption of small deformations and isotropic, elastic material behavior - neither holds well
+        for a carbon-fiber composite undergoing large deflections. Adding an explicit tip deflection
+        constraint and a geometrically nonlinear beam model would produce a more manufacturable design,
+        likely at the cost of exceeding the 60%/70% mass-reduction thresholds.
+      </p>
+    </div>
+
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-links">
+      <a href="mailto:sanaytralshawala@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/sanayt/" target="_blank">LinkedIn</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Sanay Tralshawala</div>
+  </div>
+</footer>
+
+<script>
+  function showPhase(id, btn) {
+    document.querySelectorAll('.phase-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.phase-tab').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+
 </body>
 </html>
